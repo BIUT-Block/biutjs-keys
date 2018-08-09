@@ -1,19 +1,3 @@
-// const secp256k1 = require('secp256k1')
-// const createKeccakHash = require('keccak')
-// const createHash = require('create-hash')
-// const isHexPrefixed = require('is-hex-prefixed')
-// const stripHexPrefix = require('strip-hex-prefix')
-// const assert = require('assert')
-// const Buffer = require('safe-buffer').Buffer
-// const rlp = require('rlp')
-// const BN = require('bn.js')
-// const crypto = require('crypto')
-// const EC = require('elliptic').ec
-// const RIPEMD160 = require('ripemd160')
-// const bs58 = require('bs58')
-// const dgram = require('dgram')
-// const fs = require('fs')
-// const ec = new EC('secp256k1')
 const secUtils = require('@sec-block/secjs-util')
 const utils = new secUtils
 const isBrowser = typeof process === "undefined" || !process.nextTick || Boolean(process.browser)
@@ -29,63 +13,53 @@ function keccak256 (buffer) {
     return createKeccakHash("keccak256").update(buffer).digest()
 }
 
-const version = "1.0.4"
-const browser = isBrowser,
-const scrypt = null,
-const crypto = isBrowser ? require("crypto-browserify") = require("crypto")
 
-const cipher = "aes-128-ctr" // Symmetric cipher for private key encryption
-ivBytes = 16  // Initialization vector size in bytes
-keyBytes = 32 // ECDSA private key size in bytes
-
-const pbkdf2 = {
-    c: 262144,
-    dklen: 32,
-    hash: "sha256",
-    prf: "hmac-sha256"
-} // Key derivation function parameters
-
-const scrypt = {
-    memory: 280000000,
-    dklen: 32,
-    n: 262144,
-    r: 1,
-    p: 8
-}
-
-class SecKeys {
+class secKeys {
     constructor () {
 
+        const version = "1.0.4",
+
+        const browser = isBrowser,
+
+        const scrypt = null,
+
+        const crypto = isBrowser ? require("crypto-browserify") : require("crypto"),
+
+        const constants = {
+
+            // Symmetric cipher for private key encryption
+            cipher: "aes-128-ctr",
+
+            // Initialization vector size in bytes
+            ivBytes: 16,
+
+            // ECDSA private key size in bytes
+            keyBytes: 32,
+
+            // Key derivation function parameters
+            pbkdf2: {
+                c: 262144,
+                dklen: 32,
+                hash: "sha256",
+                prf: "hmac-sha256"
+            },
+            scrypt: {
+                memory: 280000000,
+                dklen: 32,
+                n: 262144,
+                r: 1,
+                p: 8
+            }
+        }
         this.utils = utils
         this.utilsprivateKeyToAddress()
-        generatePrivateKey()
-        generatePublicKey()
-        generateAddress
-        publicToAddress
-        privateToPublic
-        isValidSignature
-
-
-
-        // this.crypto = isBrowser ? require("crypto-browserify") = require("crypto")
-        // this.cipher = "aes-128-ctr" // Symmetric cipher for private key encryption
-        // this.ivBytes = 16  // Initialization vector size in bytes
-        // this.keyBytes = 32 // ECDSA private key size in bytes
-
-        // this.pbkdf2 = {
-        //     c: 262144,
-        //     dklen: 32,
-        //     hash: "sha256",
-        //     prf: "hmac-sha256"
-        // } // Key derivation function parameters
-
-        // this.scrypt = {
-        //     memory: 280000000,
-        //     dklen: 32,
-        //     n: 262144,
-        //     r: 1,
-        //     p: 8
-        // }
+        // generatePrivateKey()
+        // generatePublicKey()
+        // generateAddress
+        // publicToAddress
+        // privateToPublic
+        // isValidSignature
+        this.constants = constants
     }
 
 
@@ -149,10 +123,10 @@ class SecKeys {
         var self = this;
         if (this.scrypt === null) this.scrypt = require("./lib/scrypt")
         if (isFunction(this.scrypt)) {
-            this.scrypt = this.scrypt(options.kdfparams.memory || this.constants.scrypt.memory);
+            this.scrypt = this.scrypt(options.kdfparams.memory || this.scrypt.memory);
         }
         if (!isFunction(cb)) {
-            return Buffer.from(this.scrypt.to_hex(this.scrypt.crypto_scrypt(
+            return Buffer.from(this.scrypt.to_hex(this.constants.scrypt.crypto_scrypt(
                 password,
                 salt,
                 options.kdfparams.n || this.constants.scrypt.n,
@@ -379,23 +353,64 @@ class SecKeys {
     exportToFile (keyObject, keystore, cb) {
         var outfile, outpath, json, fs;
         keystore = keystore || "keystore";
-        outfile = this.generateKeystoreFilename(keyObject.address);
+        outfile = this.generateKeystoreFilename(keyObject.address)
         json = JSON.stringify(keyObject);
         if (this.browser) {
             if (!isFunction(cb)) return json;
-            return cb(json);
+            return cb(json)
         }
-        outpath = require("path").join(keystore, outfile);
+        outpath = require("path").join(keystore, outfile)
         fs = require("fs");
         if (!isFunction(cb)) {
             fs.writeFileSync(outpath, json);
-            return outpath;
+            return outpath
         }
         fs.writeFile(outpath, json, function (err) {
             if (err) return cb(err);
-            cb(outpath);
-        });
+            cb(outpath)
+        })
+    }
+    importFromFile (address, datadir, cb) {
+        var keystore, filepath, path, fs;
+        if (this.browser) throw new Error("method only available in Node.js");
+        path = require("path");
+        fs = require("fs");
+        address = address.replace("0x", "");
+        address = address.toLowerCase();
+
+        function findKeyfile (keystore, address, files) {
+            var i, len, filepath = null;
+            for (i = 0, len = files.length; i < len; ++i) {
+                if (files[i].indexOf(address) > -1) {
+                    filepath = path.join(keystore, files[i]);
+                    if (fs.lstatSync(filepath).isDirectory()) {
+                        filepath = path.join(filepath, files[i]);
+                    }
+                    break
+                }
+            }
+            return filepath
+        }
+
+        datadir = datadir || path.join(process.env.HOME, ".ethereum");
+        keystore = path.join(datadir, "keystore");
+        if (!isFunction(cb)) {
+            filepath = findKeyfile(keystore, address, fs.readdirSync(keystore));
+            if (!filepath) {
+                throw new Error("could not find key file for address " + address);
+            }
+            return JSON.parse(fs.readFileSync(filepath));
+        }
+        fs.readdir(keystore, function (ex, files) {
+            var filepath;
+            if (ex) return cb(ex);
+            filepath = findKeyfile(keystore, address, files);
+            if (!filepath) {
+                return new Error("could not find key file for address " + address);
+            }
+            return cb(JSON.parse(fs.readFileSync(filepath)));
+        })
     }
 }
 
-module.exports = SecKeys
+module.exports = secKeys
