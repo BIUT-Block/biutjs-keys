@@ -6,9 +6,10 @@ const uuid = require("uuid")
 const secp256k1 = require("secp256k1/elliptic")
 const createKeccakHash = require("keccak/js")
 
-const secKeys = require("index.js")
+const secKeys = require("../src/index.js")
 const keySEC = new secKeys()
 
+const privateKey = util.generatePrivateKey()
 // function isFunction (f) {
 //     return typeof f === "function"
 // }
@@ -24,5 +25,8 @@ const keySEC = new secKeys()
 
 const crypto = isBrowser ? require("crypto-browserify") : require("crypto"),
 
-a=console.log(crypto)
+a=console.log(crypto),
+b= console.log(privateKey)
+
+
 // console.log(a)

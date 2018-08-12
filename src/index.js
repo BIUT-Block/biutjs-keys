@@ -10,7 +10,7 @@ class secKeys {
     constructor () {
 
         this.utils = utils
-        this.utils.privateKeyToAddress()
+        //this.utils.privateKeyToAddress()
         // generatePrivateKey()
         // generatePublicKey()
         // generateAddress

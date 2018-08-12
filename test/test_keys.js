@@ -5,7 +5,7 @@ const path = require("path")
 const crypto = require("crypto")
 const assert = require("chai").assert
 const checkKeyObj = require("./checkKeyObj")
-const secKeys = require("1.js")
+const secKeys = require("../src/index.js")
 const keySEC = new secKeys()
 // timeout for asynchronous unit tests
 const TIMEOUT = 120000;
