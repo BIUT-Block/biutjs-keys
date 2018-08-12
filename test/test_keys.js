@@ -7,11 +7,13 @@ const assert = require("chai").assert
 const checkKeyObj = require("./checkKeyObj")
 const secKeys = require("../src/index.js")
 const keySEC = new secKeys()
+const secUtils = require('@sec-block/secjs-util')
+const utils = new secUtils
 // timeout for asynchronous unit tests
 const TIMEOUT = 120000;
 
 // create private key
-const privateKey = crypto.randomBytes(32);
+const privateKey = utils.generatePrivateKey()
 
 describe("Check if valid hex-encoded string", function () {
   var test = function (t) {
@@ -70,385 +72,385 @@ describe("Check if valid hex-encoded string", function () {
   });
 });
 
-// describe("Check if valid base64-encoded string", function () {
-//   var test = function (t) {
-//     it(t.description, function () {
-//       t.assertions(keySEC.isBase64(t.s));
-//     });
-//   };
-//   // test cases: https://github.com/chriso/validator.js/blob/master/test/validators.js
-//   [
-//     "aGVsbG8gd29ybGQ=",
-//     "ZGVhZGIwYg==",
-//     "YWxpdmViZWVm",
-//     "Zg==",
-//     "Zm8=",
-//     "Zm9v",
-//     "Zm9vYg==",
-//     "Zm9vYmE=",
-//     "Zm9vYmFy",
-//     "TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4=",
-//     "Vml2YW11cyBmZXJtZW50dW0gc2VtcGVyIHBvcnRhLg==",
-//     "U3VzcGVuZGlzc2UgbGVjdHVzIGxlbw==",
-//     "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuMPNS1Ufof9EW/M98FNw" +
-//     "UAKrwflsqVxaxQjBQnHQmiI7Vac40t8x7pIb8gLGV6wL7sBTJiPovJ0V7y7oc0Ye" +
-//     "rhKh0Rm4skP2z/jHwwZICgGzBvA0rH8xlhUiTvcwDCJ0kc+fh35hNt8srZQM4619" +
-//     "FTgB66Xmp4EtVyhpQV+t02g6NzK72oZI0vnAvqhpkxLeLiMCyrI416wHm5Tkukhx" +
-//     "QmcL2a6hNOyu0ixX/x2kSFXApEnVrJ+/IxGyfyw8kf4N2IZpW5nEP847lpfj0SZZ" +
-//     "Fwrd1mnfnDbYohX2zRptLy2ZUn06Qo9pkG5ntvFEPo9bfZeULtjYzIl6K8gJ2uGZ" +
-//     "HQIDAQAB"
-//   ].forEach(function (s) {
-//     test({
-//       description: s + " -> true",
-//       s: s,
-//       assertions: function (isBase64) {
-//         assert.isTrue(isBase64);
-//       }
-//     });
-//   });
-//   [
-//     "12345",
-//     "",
-//     "Vml2YW11cyBmZXJtZtesting123",
-//     "Zg=",
-//     "Z===",
-//     "Zm=8",
-//     "=m9vYg==",
-//     "Zm9vYmFy===="
-//   ].forEach(function (s) {
-//     test({
-//       description: s + " -> false",
-//       s: "s",
-//       assertions: function (isBase64) {
-//         assert.isFalse(isBase64);
-//       }
-//     });
-//   });
-// });
+describe("Check if valid base64-encoded string", function () {
+  var test = function (t) {
+    it(t.description, function () {
+      t.assertions(keySEC.isBase64(t.s));
+    });
+  };
+  // test cases: https://github.com/chriso/validator.js/blob/master/test/validators.js
+  [
+    "aGVsbG8gd29ybGQ=",
+    "ZGVhZGIwYg==",
+    "YWxpdmViZWVm",
+    "Zg==",
+    "Zm8=",
+    "Zm9v",
+    "Zm9vYg==",
+    "Zm9vYmE=",
+    "Zm9vYmFy",
+    "TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4=",
+    "Vml2YW11cyBmZXJtZW50dW0gc2VtcGVyIHBvcnRhLg==",
+    "U3VzcGVuZGlzc2UgbGVjdHVzIGxlbw==",
+    "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuMPNS1Ufof9EW/M98FNw" +
+    "UAKrwflsqVxaxQjBQnHQmiI7Vac40t8x7pIb8gLGV6wL7sBTJiPovJ0V7y7oc0Ye" +
+    "rhKh0Rm4skP2z/jHwwZICgGzBvA0rH8xlhUiTvcwDCJ0kc+fh35hNt8srZQM4619" +
+    "FTgB66Xmp4EtVyhpQV+t02g6NzK72oZI0vnAvqhpkxLeLiMCyrI416wHm5Tkukhx" +
+    "QmcL2a6hNOyu0ixX/x2kSFXApEnVrJ+/IxGyfyw8kf4N2IZpW5nEP847lpfj0SZZ" +
+    "Fwrd1mnfnDbYohX2zRptLy2ZUn06Qo9pkG5ntvFEPo9bfZeULtjYzIl6K8gJ2uGZ" +
+    "HQIDAQAB"
+  ].forEach(function (s) {
+    test({
+      description: s + " -> true",
+      s: s,
+      assertions: function (isBase64) {
+        assert.isTrue(isBase64);
+      }
+    });
+  });
+  [
+    "12345",
+    "",
+    "Vml2YW11cyBmZXJtZtesting123",
+    "Zg=",
+    "Z===",
+    "Zm=8",
+    "=m9vYg==",
+    "Zm9vYmFy===="
+  ].forEach(function (s) {
+    test({
+      description: s + " -> false",
+      s: "s",
+      assertions: function (isBase64) {
+        assert.isFalse(isBase64);
+      }
+    });
+  });
+});
 
-// describe("Convert a string to a Buffer", function () {
-//   var test = function (t) {
-//     it(t.description, function () {
-//       t.assertions(keySEC.str2buf(t.params.str, t.params.enc));
-//     });
-//   };
-//   test({
-//     description: "[ascii] hello world",
-//     params: {
-//       str: "hello world",
-//       enc: "ascii"
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "hello world");
-//     }
-//   });
-//   test({
-//     description: "[utf8] hello world",
-//     params: {
-//       str: "hello world",
-//       enc: "utf8"
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "hello world");
-//     }
-//   });
-//   test({
-//     description: "[hex] 68656c6c6f20776f726c64",
-//     params: {
-//       str: "68656c6c6f20776f726c64",
-//       enc: "hex"
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "hello world");
-//     }
-//   });
-//   test({
-//     description: "[inferred hex] 68656c6c6f20776f726c64",
-//     params: {
-//       str: "68656c6c6f20776f726c64"
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "hello world");
-//     }
-//   });
-//   test({
-//     description: "[inferred utf8] hello world",
-//     params: {
-//       str: "hello world"
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "hello world");
-//     }
-//   });
-//   test({
-//     description: "[inferred utf8] hello",
-//     params: {
-//       str: "hello"
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "hello");
-//     }
-//   });
-//   test({
-//     description: "[inferred base64] aGVsbG8gd29ybGQ=",
-//     params: {
-//       str: "aGVsbG8gd29ybGQ="
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "hello world");
-//     }
-//   });
-//   test({
-//     description: "[inferred base64] ZGVhZGIwYg==",
-//     params: {
-//       str: "ZGVhZGIwYg=="
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "deadb0b");
-//     }
-//   });
-//   test({
-//     description: "[inferred base64] aGVsbG8gd29ybGQ=",
-//     params: {
-//       str: "aGVsbG8gd29ybGQ="
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "hello world");
-//     }
-//   });
-//   test({
-//     description: "[inferred base64] YWxpdmViZWVm",
-//     params: {
-//       str: "YWxpdmViZWVm"
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "alivebeef");
-//     }
-//   });
-// });
+describe("Convert a string to a Buffer", function () {
+  var test = function (t) {
+    it(t.description, function () {
+      t.assertions(keySEC.str2buf(t.params.str, t.params.enc));
+    });
+  };
+  test({
+    description: "[ascii] hello world",
+    params: {
+      str: "hello world",
+      enc: "ascii"
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "hello world");
+    }
+  });
+  test({
+    description: "[utf8] hello world",
+    params: {
+      str: "hello world",
+      enc: "utf8"
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "hello world");
+    }
+  });
+  test({
+    description: "[hex] 68656c6c6f20776f726c64",
+    params: {
+      str: "68656c6c6f20776f726c64",
+      enc: "hex"
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "hello world");
+    }
+  });
+  test({
+    description: "[inferred hex] 68656c6c6f20776f726c64",
+    params: {
+      str: "68656c6c6f20776f726c64"
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "hello world");
+    }
+  });
+  test({
+    description: "[inferred utf8] hello world",
+    params: {
+      str: "hello world"
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "hello world");
+    }
+  });
+  test({
+    description: "[inferred utf8] hello",
+    params: {
+      str: "hello"
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "hello");
+    }
+  });
+  test({
+    description: "[inferred base64] aGVsbG8gd29ybGQ=",
+    params: {
+      str: "aGVsbG8gd29ybGQ="
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "hello world");
+    }
+  });
+  test({
+    description: "[inferred base64] ZGVhZGIwYg==",
+    params: {
+      str: "ZGVhZGIwYg=="
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "deadb0b");
+    }
+  });
+  test({
+    description: "[inferred base64] aGVsbG8gd29ybGQ=",
+    params: {
+      str: "aGVsbG8gd29ybGQ="
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "hello world");
+    }
+  });
+  test({
+    description: "[inferred base64] YWxpdmViZWVm",
+    params: {
+      str: "YWxpdmViZWVm"
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "alivebeef");
+    }
+  });
+});
 
-// describe("Check if selected cipher is available", function () {
-//   var test = function (t) {
-//     it(t.description, function () {
-//       t.assertions(keySEC.isCipherAvailable(t.cipher));
-//     });
-//   };
-//   test({
-//     description: "aes-128-ctr should be available",
-//     cipher: "aes-128-ctr",
-//     assertions: function (isAvailable) {
-//       assert.isTrue(isAvailable);
-//     }
-//   });
-//   test({
-//     description: "aes-128-cbc should be available",
-//     cipher: "aes-128-cbc",
-//     assertions: function (isAvailable) {
-//       assert.isTrue(isAvailable);
-//     }
-//   });
-//   test({
-//     description: "roflcipher should not be available",
-//     cipher: "roflcipher",
-//     assertions: function (isAvailable) {
-//       assert.isFalse(isAvailable);
-//     }
-//   });
-// });
+describe("Check if selected cipher is available", function () {
+  var test = function (t) {
+    it(t.description, function () {
+      t.assertions(keySEC.isCipherAvailable(t.cipher));
+    });
+  };
+  test({
+    description: "aes-128-ctr should be available",
+    cipher: "aes-128-ctr",
+    assertions: function (isAvailable) {
+      assert.isTrue(isAvailable);
+    }
+  });
+  test({
+    description: "aes-128-cbc should be available",
+    cipher: "aes-128-cbc",
+    assertions: function (isAvailable) {
+      assert.isTrue(isAvailable);
+    }
+  });
+  test({
+    description: "roflcipher should not be available",
+    cipher: "roflcipher",
+    assertions: function (isAvailable) {
+      assert.isFalse(isAvailable);
+    }
+  });
+});
 
-// describe("Private key recovery", function () {
+describe("Private key recovery", function () {
 
-//   // password used as secret key for aes-256 cipher
-//   var password = "wheethereum";
-//   var secret = crypto.createHash("sha256").update(password).digest("hex");
-//   var cipher = crypto.createCipher("aes-256-cbc", secret);
-//   var encryptedPrivateKey = cipher.update(privateKey, "hex", "base64");
-//   encryptedPrivateKey += cipher.final("base64");
+  // password used as secret key for aes-256 cipher
+  var password = "wheethereum";
+  var secret = crypto.createHash("sha256").update(password).digest("hex");
+  var cipher = crypto.createCipher("aes-256-cbc", secret);
+  var encryptedPrivateKey = cipher.update(privateKey, "hex", "base64");
+  encryptedPrivateKey += cipher.final("base64");
 
-//   // verify private key is recovered by decryption
-//   it(encryptedPrivateKey + " -> " + privateKey.toString("hex"), function () {
-//     var decipher = crypto.createDecipher("aes-256-cbc", secret);
-//     var decryptedPrivateKey = decipher.update(encryptedPrivateKey, "base64", "hex");
-//     decryptedPrivateKey += decipher.final("hex");
-//     assert.strictEqual(decryptedPrivateKey, privateKey.toString("hex"));
-//   });
-// });
+  // verify private key is recovered by decryption
+  it(encryptedPrivateKey + " -> " + privateKey.toString("hex"), function () {
+    var decipher = crypto.createDecipher("aes-256-cbc", secret);
+    var decryptedPrivateKey = decipher.update(encryptedPrivateKey, "base64", "hex");
+    decryptedPrivateKey += decipher.final("hex");
+    assert.strictEqual(decryptedPrivateKey, privateKey.toString("hex"));
+  });
+});
 
-// describe("Derive SEC address from private key", function () {
-//   var test = function (t) {
-//     it(t.description + ": " + t.privateKey, function () {
-//       t.assertions(keySEC.privateKeyToAddress(t.privateKey));
-//       t.assertions(keySEC.privateKeyToAddress(Buffer.from(t.privateKey, "hex")));
-//       t.assertions(keySEC.privateKeyToAddress(Buffer.from(t.privateKey, "hex").toString("base64")));
-//     });
-//   };
-//   test({
-//     description: "32-byte private key",
-//     privateKey: "d1b1178d3529626a1a93e073f65028370d14c7eb0936eb42abef05db6f37ad7d",
-//     assertions: function (address) {
-//       assert.strictEqual(address, "0xcb61d5a9c4896fb9658090b597ef0e7be6f7b67e");
-//     }
-//   });
-//   test({
-//     description: "32-byte private key",
-//     privateKey: "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
-//     assertions: function (address) {
-//       assert.strictEqual(address, "0x008aeeda4d805471df9b2a5b0f38a0c3bcba786b");
-//     }
-//   });
-//   test({
-//     description: "32-byte private key",
-//     privateKey: "6445042b8e8cc121fb6a8985606a84b4cb07dac6dfb3633e769ec27dd2370984",
-//     assertions: function (address) {
-//       assert.strictEqual(address, "0xe1e212c353f7a682693c198ba5ff85849f8300cc");
-//     }
-//   });
-//   test({
-//     description: "32-byte private key",
-//     privateKey: "490127c2782fb55943beeb31943ec26f48a9a5121cd7e91799eb354d30d46529",
-//     assertions: function (address) {
-//       assert.strictEqual(address, "0xf0c4ee355432a7c7da12bdef04543723d110d591");
-//     }
-//   });
-//   test({
-//     description: "31-byte private key",
-//     privateKey: "fa7b3db73dc7dfdf8c5fbdb796d741e4488628c41fc4febd9160a866ba0f35",
-//     assertions: function (address) {
-//       assert.strictEqual(address, "0xd1e64e5480bfaf733ba7d48712decb8227797a4e");
-//     }
-//   });
-//   test({
-//     description: "30-byte private key",
-//     privateKey: "81c29e8142bb6a81bef5a92bda7a8328a5c85bb2f9542e76f9b0f94fc018",
-//     assertions: function (address) {
-//       assert.strictEqual(address, "0x31e9d1e6d844bd3a536800ef8d8be6a9975db509");
-//     }
-//   });
-// });
+describe("Derive SEC address from private key", function () {
+  var test = function (t) {
+    it(t.description + ": " + t.privateKey, function () {
+      t.assertions(keySEC.privateKeyToAddress(t.privateKey));
+      t.assertions(keySEC.privateKeyToAddress(Buffer.from(t.privateKey, "hex")));
+      t.assertions(keySEC.privateKeyToAddress(Buffer.from(t.privateKey, "hex").toString("base64")));
+    });
+  };
+  test({
+    description: "32-byte private key",
+    privateKey: "d1b1178d3529626a1a93e073f65028370d14c7eb0936eb42abef05db6f37ad7d",
+    assertions: function (address) {
+      assert.strictEqual(address, "0xcb61d5a9c4896fb9658090b597ef0e7be6f7b67e");
+    }
+  });
+  test({
+    description: "32-byte private key",
+    privateKey: "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
+    assertions: function (address) {
+      assert.strictEqual(address, "0x008aeeda4d805471df9b2a5b0f38a0c3bcba786b");
+    }
+  });
+  test({
+    description: "32-byte private key",
+    privateKey: "6445042b8e8cc121fb6a8985606a84b4cb07dac6dfb3633e769ec27dd2370984",
+    assertions: function (address) {
+      assert.strictEqual(address, "0xe1e212c353f7a682693c198ba5ff85849f8300cc");
+    }
+  });
+  test({
+    description: "32-byte private key",
+    privateKey: "490127c2782fb55943beeb31943ec26f48a9a5121cd7e91799eb354d30d46529",
+    assertions: function (address) {
+      assert.strictEqual(address, "0xf0c4ee355432a7c7da12bdef04543723d110d591");
+    }
+  });
+  test({
+    description: "31-byte private key",
+    privateKey: "fa7b3db73dc7dfdf8c5fbdb796d741e4488628c41fc4febd9160a866ba0f35",
+    assertions: function (address) {
+      assert.strictEqual(address, "0xd1e64e5480bfaf733ba7d48712decb8227797a4e");
+    }
+  });
+  test({
+    description: "30-byte private key",
+    privateKey: "81c29e8142bb6a81bef5a92bda7a8328a5c85bb2f9542e76f9b0f94fc018",
+    assertions: function (address) {
+      assert.strictEqual(address, "0x31e9d1e6d844bd3a536800ef8d8be6a9975db509");
+    }
+  });
+});
 
-// describe("Create random private key, salt and initialization vector", function () {
+describe("Create random private key, salt and initialization vector", function () {
 
-//   var test = function (dk, params) {
-//     assert.property(dk, "privateKey");
-//     assert.isNotNull(dk.privateKey);
-//     assert.instanceOf(dk.privateKey, Buffer);
-//     assert.strictEqual(dk.privateKey.length, params.keyBytes);
+  var test = function (dk, params) {
+    assert.property(dk, "privateKey");
+    assert.isNotNull(dk.privateKey);
+    assert.instanceOf(dk.privateKey, Buffer);
+    assert.strictEqual(dk.privateKey.length, params.keyBytes);
 
-//     assert.property(dk, "iv");
-//     assert.isNotNull(dk.iv);
-//     assert.instanceOf(dk.iv, Buffer);
-//     assert.strictEqual(dk.iv.length, params.ivBytes);
+    assert.property(dk, "iv");
+    assert.isNotNull(dk.iv);
+    assert.instanceOf(dk.iv, Buffer);
+    assert.strictEqual(dk.iv.length, params.ivBytes);
 
-//     assert.property(dk, "salt");
-//     assert.isNotNull(dk.salt);
-//     assert.instanceOf(dk.salt, Buffer);
-//     assert.strictEqual(dk.salt.length, params.keyBytes);
-//   };
+    assert.property(dk, "salt");
+    assert.isNotNull(dk.salt);
+    assert.instanceOf(dk.salt, Buffer);
+    assert.strictEqual(dk.salt.length, params.keyBytes);
+  };
 
-//   var runtests = function (i) {
-//     var runtest = function (params) {
-//       it("create key " + i + ": " + JSON.stringify(params), function (done) {
+  var runtests = function (i) {
+    var runtest = function (params) {
+      it("create key " + i + ": " + JSON.stringify(params), function (done) {
 
-//         // synchronous
-//         test(keySEC.create(), keySEC.constants);
-//         test(keySEC.create(params), params);
+        // synchronous
+        test(keySEC.create(), keySEC.constants);
+        test(keySEC.create(params), params);
 
-//         // asynchronous
-//         keySEC.create(null, function (dk) {
-//           test(dk, keySEC.constants);
-//           keySEC.create(params, function (dk) {
-//             test(dk, params);
-//             done();
-//           });
-//         });
-//       });
-//     };
+        // asynchronous
+        keySEC.create(null, function (dk) {
+          test(dk, keySEC.constants);
+          keySEC.create(params, function (dk) {
+            test(dk, params);
+            done();
+          });
+        });
+      });
+    };
 
-//     runtest(keySEC.constants);
-//     runtest({ keyBytes: 32, ivBytes: 16 });
-//   };
+    runtest(keySEC.constants);
+    runtest({ keyBytes: 32, ivBytes: 16 });
+  };
 
-//   var i;
-//   for (i = 0; i < 25; ++i) runtests(i);
-// });
+  var i;
+  for (i = 0; i < 25; ++i) runtests(i);
+});
 
-// describe("Encryption", function () {
+describe("Encryption", function () {
 
-//   var test = function (t) {
-//     var label = t.input.cipher + ": " + JSON.stringify(t.input.plaintext) +
-//       " -> " + t.expected.ciphertext;
-//     it(label, function () {
-//       var oldCipher = keySEC.constants.cipher;
-//       keySEC.constants.cipher = t.input.cipher;
-//       assert.strictEqual(
-//         keySEC.encrypt(t.input.plaintext, t.input.key, t.input.iv).toString("base64"),
-//         t.expected.ciphertext
-//       );
-//       keySEC.constants.cipher = oldCipher;
-//     });
-//   };
+  var test = function (t) {
+    var label = t.input.cipher + ": " + JSON.stringify(t.input.plaintext) +
+      " -> " + t.expected.ciphertext;
+    it(label, function () {
+      var oldCipher = keySEC.constants.cipher;
+      keySEC.constants.cipher = t.input.cipher;
+      assert.strictEqual(
+        keySEC.encrypt(t.input.plaintext, t.input.key, t.input.iv).toString("base64"),
+        t.expected.ciphertext
+      );
+      keySEC.constants.cipher = oldCipher;
+    });
+  };
 
-//   var runtests = function (t) {
-//     test({
-//       input: {
-//         plaintext: t.plaintext,
-//         key: t.key,
-//         iv: t.iv,
-//         cipher: "aes-128-ctr"
-//       },
-//       expected: {
-//         ciphertext: t.ciphertext.toString("base64")
-//       }
-//     });
-//     test({
-//       input: {
-//         plaintext: t.plaintext.toString("hex"),
-//         key: t.key.toString("hex"),
-//         iv: t.iv.toString("hex"),
-//         cipher: "aes-128-ctr"
-//       },
-//       expected: {
-//         ciphertext: t.ciphertext.toString("base64")
-//       }
-//     });
-//     test({
-//       input: {
-//         plaintext: t.plaintext.toString("base64"),
-//         key: t.key.toString("base64"),
-//         iv: t.iv.toString("base64"),
-//         cipher: "aes-128-ctr"
-//       },
-//       expected: {
-//         ciphertext: t.ciphertext.toString("base64")
-//       }
-//     });
-//   };
+  var runtests = function (t) {
+    test({
+      input: {
+        plaintext: t.plaintext,
+        key: t.key,
+        iv: t.iv,
+        cipher: "aes-128-ctr"
+      },
+      expected: {
+        ciphertext: t.ciphertext.toString("base64")
+      }
+    });
+    test({
+      input: {
+        plaintext: t.plaintext.toString("hex"),
+        key: t.key.toString("hex"),
+        iv: t.iv.toString("hex"),
+        cipher: "aes-128-ctr"
+      },
+      expected: {
+        ciphertext: t.ciphertext.toString("base64")
+      }
+    });
+    test({
+      input: {
+        plaintext: t.plaintext.toString("base64"),
+        key: t.key.toString("base64"),
+        iv: t.iv.toString("base64"),
+        cipher: "aes-128-ctr"
+      },
+      expected: {
+        ciphertext: t.ciphertext.toString("base64")
+      }
+    });
+  };
 
-//   runtests({
-//     plaintext: Buffer.from(
-//       "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
-//       "hex"
-//     ),
-//     ciphertext: Buffer.from(
-//       "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
-//       "hex"
-//     ),
-//     key: Buffer.from("f06d69cdc7da0faffb1008270bca38f5", "hex"),
-//     iv: Buffer.from("6087dab2f9fdbbfaddc31a909735c1e6", "hex")
-//   });
-//   runtests({
-//     plaintext: Buffer.from(
-//       "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
-//       "hex"
-//     ),
-//     ciphertext: Buffer.from(
-//       "d172bf743a674da9cdad04534d56926ef8358534d458fffccd4e6ad2fbde479c",
-//       "hex"
-//     ),
-//     key: Buffer.from("fac192ceb5fd772906bea3e118a69e8b", "hex"),
-//     iv: Buffer.from("83dbcc02d8ccb40e466191a123791e0e", "hex")
-//   });
-// });
+  runtests({
+    plaintext: Buffer.from(
+      "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
+      "hex"
+    ),
+    ciphertext: Buffer.from(
+      "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
+      "hex"
+    ),
+    key: Buffer.from("f06d69cdc7da0faffb1008270bca38f5", "hex"),
+    iv: Buffer.from("6087dab2f9fdbbfaddc31a909735c1e6", "hex")
+  });
+  runtests({
+    plaintext: Buffer.from(
+      "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
+      "hex"
+    ),
+    ciphertext: Buffer.from(
+      "d172bf743a674da9cdad04534d56926ef8358534d458fffccd4e6ad2fbde479c",
+      "hex"
+    ),
+    key: Buffer.from("fac192ceb5fd772906bea3e118a69e8b", "hex"),
+    iv: Buffer.from("83dbcc02d8ccb40e466191a123791e0e", "hex")
+  });
+});
 
 // describe("Decryption", function () {
 

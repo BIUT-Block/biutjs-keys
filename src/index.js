@@ -43,7 +43,7 @@ class secKeys {
             }
         }
         this.version = "1.0.4"
-        this.browser = isbrowser
+        this.browser = isBrowser
         this.scrypt = null
         this.crypto = isBrowser ? require("crypto-browserify") : require("crypto")
     }
@@ -173,7 +173,7 @@ class secKeys {
 
     deriveKeyUsingScryptInBrowser (password, salt, options, cb) {
         var self = this;
-        if (this.scrypt === null) this.scrypt = require("./lib/scrypt")
+        if (this.scrypt === null) this.scrypt = require("./scrypt")
         if (isFunction(this.scrypt)) {
             this.scrypt = this.scrypt(options.kdfparams.memory || this.scrypt.memory);
         }
