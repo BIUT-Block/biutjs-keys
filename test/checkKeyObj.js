@@ -2,11 +2,15 @@
 
 var assert = require("chai").assert;
 var isUUID = require("validator").isUUID;
-var isHex = require("../").isHex;
+const secKeys = require("../src/index.js")
+const keySEC = new secKeys()
+
+var isHex = keySEC.isHex()
+// var isHex = require("../").isHex;
 
 module.exports = {
 
-  structure: function (keythereum, keyObject) {
+  structure: function (keySEC, keyObject) {
     var keyObjectCrypto = keyObject.Crypto || keyObject.crypto;
     assert.instanceOf(keyObject, Object);
     assert.property(keyObject, "address");

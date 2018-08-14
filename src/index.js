@@ -1,22 +1,28 @@
 const secUtils = require('@sec-block/secjs-util')
-const utils = new secUtils
+const utils = new secUtils()
 const isBrowser = typeof process === "undefined" || !process.nextTick || Boolean(process.browser)
 const sjcl = require("sjcl")
 const uuid = require("uuid")
 const secp256k1 = require("secp256k1/elliptic")
 const createKeccakHash = require("keccak/js")
 
+
+  function str2buf (str, enc) {
+    if (!str || str.constructor !== String) return str;
+    if (!enc && this.util.isHexString(str, length)) enc = "hex";
+    if (!enc && this.isBase64(str)) enc = "base64";
+    return Buffer.from(str, enc)
+}
+
 class secKeys {
     constructor () {
 
         this.utils = utils
+
+        // this.utils.getprivateKey()
         //this.utils.privateKeyToAddress()
         // generatePrivateKey()
         // generatePublicKey()
-        // generateAddress
-        // publicToAddress
-        // privateToPublic
-        // isValidSignature
         this.constants = {
             // Symmetric cipher for private key encryption
             cipher: "aes-128-ctr",
@@ -46,6 +52,7 @@ class secKeys {
         this.browser = isBrowser
         this.scrypt = null
         this.crypto = isBrowser ? require("crypto-browserify") : require("crypto")
+        // this.str2buf()
     }
     /**
      * @param  {} f function name
@@ -70,8 +77,8 @@ class secKeys {
     * @return {boolean} True if the string is valid hex, false otherwise.
     */
     isHex (str) {
-        if (str.length % 2 === 0 && str.match(/^[0-9a-f]+$/i)) return true;
-        return false;
+        if (str.length % 2 === 0 && str.match(/^[0-9a-f]+$/i)) return true
+        return false
     }
 
     /**
@@ -96,7 +103,8 @@ class secKeys {
     */
     str2buf (str, enc) {
         if (!str || str.constructor !== String) return str;
-        if (!enc && this.util.isHexString(str, length)) enc = "hex";
+        if (!enc && this.isHex(str)) enc = "hex";
+        // if (!enc && this.util.isHexString(str, length)) enc = "hex";
         if (!enc && this.isBase64(str)) enc = "base64";
         return Buffer.from(str, enc)
     }
@@ -288,7 +296,8 @@ class secKeys {
         ivBytes = params.ivBytes || this.constants.ivBytes;
 
         function checkBoundsAndCreateObject (randomBytes) {
-            var privateKey = randomBytes.slice(0, keyBytes);
+             var privateKey = str2buf(utils.getPrivateKey(), 'hex')
+            // var privateKey = randomBytes.slice(0, keyBytes);
             if (!secp256k1.privateKeyVerify(privateKey)) return self.create(params, cb);
             return {
                 privateKey: privateKey,
@@ -298,7 +307,7 @@ class secKeys {
         }
 
         // synchronous key generation if callback not provided
-        if (!isFunction(cb)) {
+        if (!this.isFunction(cb)) {
             return checkBoundsAndCreateObject(this.crypto.randomBytes(keyBytes + ivBytes + keyBytes));
         }
 
@@ -512,7 +521,7 @@ class secKeys {
             return filepath
         }
 
-        datadir = datadir || path.join(process.env.HOME, ".SEC");
+        datadir = datadir || path.join(process.env.HOME, ".sec");
         keystore = path.join(datadir, "keystore");
         if (!isFunction(cb)) {
             filepath = findKeyfile(keystore, address, fs.readdirSync(keystore));
