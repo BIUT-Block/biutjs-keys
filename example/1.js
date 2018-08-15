@@ -53,7 +53,7 @@ let x = keySEC.create(constants, (err, value) => {
 })
 
 // let iv x.iv 
-keySEC.isHex(privateKey)
+console.log(keySEC.isHex(privateKey))
 
 //  create initialization vector and salt (for key derivation).
 // c = keySEC.create(cb)

@@ -6,7 +6,7 @@ const crypto = require("crypto")
 const assert = require("chai").assert
 const checkKeyObj = require("./checkKeyObj")
 
-const secKeys = require("../src/index1.js")
+const secKeys = require("../src/index.js")
 const keySEC = new secKeys()
 const secUtils = require('@sec-block/secjs-util')
 const utils = new secUtils()
@@ -17,95 +17,95 @@ const TIMEOUT = 120000
 const privateKey = utils.getPrivateKey()
 // const privateKey = crypto.randomBytes(32)
 
-describe('isHex', function () {
-  it('valid isHex tests', () => {
-    assert.equal(keySEC.isHex('d9eff37448caba6eb59e5256ada38409c17304c8f681d5c71a1fbad77f5c6ccf'), true)
-    assert.equal(keySEC.isHex('6d244ccbd93cdeb912bef51e422a8d15ba03d2e66920658867940f648b2bb5a6'), true)
-    assert.equal(keySEC.isHex('fcebc174dda436593354171c476d68653261b07585a54ccb21aa311e24adbd2d'), true)
-    assert.equal(keySEC.isHex('0xecfaa1a0c4372a2ac5cca1e164510ec8df04f681fc960797f1419802ec00b225'), true)
-    assert.equal(keySEC.isHex('0x6e0e6d45820d91356fc73d7ff2bdef353ebfe7e9'), true)
-    assert.equal(keySEC.isHex('0x620e6d45820d91356fc73d7ff2bdef353ebfe7e9'), true)
-    assert.equal(keySEC.isHex('0x1e0e6d45820d91356fc73d7ff2bdef353ebfe7e9'), true)
-    assert.equal(keySEC.isHex('0x2e0e6d45820d91356fc73d7ff2bdef353ebfe7e9'), true)
-    assert.equal(keySEC.isHex('0x220c96d48733a847570c2f0b40daa8793b3ae875b26a4ead1f0f9cead05c3863'), true)
-    assert.equal(keySEC.isHex('0x2bb303f0ae65c64ef80a3bb3ee8ceef5d50065bd'), true)
-    assert.equal(keySEC.isHex('0x6e026d45820d91256fc73d7ff2bdef353ebfe7e9'), true)
-  })
+// describe('isHex', function () {
+//   it('valid isHex tests', () => {
+//     assert.equal(keySEC.isHex('d9eff37448caba6eb59e5256ada38409c17304c8f681d5c71a1fbad77f5c6ccf'), true)
+//     assert.equal(keySEC.isHex('6d244ccbd93cdeb912bef51e422a8d15ba03d2e66920658867940f648b2bb5a6'), true)
+//     assert.equal(keySEC.isHex('fcebc174dda436593354171c476d68653261b07585a54ccb21aa311e24adbd2d'), true)
+//     assert.equal(keySEC.isHex('0xecfaa1a0c4372a2ac5cca1e164510ec8df04f681fc960797f1419802ec00b225'), true)
+//     assert.equal(keySEC.isHex('0x6e0e6d45820d91356fc73d7ff2bdef353ebfe7e9'), true)
+//     assert.equal(keySEC.isHex('0x620e6d45820d91356fc73d7ff2bdef353ebfe7e9'), true)
+//     assert.equal(keySEC.isHex('0x1e0e6d45820d91356fc73d7ff2bdef353ebfe7e9'), true)
+//     assert.equal(keySEC.isHex('0x2e0e6d45820d91356fc73d7ff2bdef353ebfe7e9'), true)
+//     assert.equal(keySEC.isHex('0x220c96d48733a847570c2f0b40daa8793b3ae875b26a4ead1f0f9cead05c3863'), true)
+//     assert.equal(keySEC.isHex('0x2bb303f0ae65c64ef80a3bb3ee8ceef5d50065bd'), true)
+//     assert.equal(keySEC.isHex('0x6e026d45820d91256fc73d7ff2bdef353ebfe7e9'), true)
+//   })
 
-  it('invalid isHex tests', () => {
-    assert.equal(keySEC.isHex(' 0x0e026d45820d91356fc73d7ff2bdef353ebfe7e9'), false)
-    assert.equal(keySEC.isHex('fdsjfsd'), false)
-    assert.equal(keySEC.isHex(' 0xfdsjfsd'), false)
-    assert.equal(keySEC.isHex('0xfds*jfsd'), false)
-    assert.equal(keySEC.isHex('0xfds$jfsd'), false)
-    assert.equal(keySEC.isHex('0xf@dsjfsd'), false)
-    assert.equal(keySEC.isHex('0xfdsjf!sd'), false)
-    assert.equal(keySEC.isHex('fds@@jfsd'), false)
-    assert.equal(keySEC.isHex(24223), false)
-    assert.equal(keySEC.isHex(null), false)
-    assert.equal(keySEC.isHex(undefined), false)
-    assert.equal(keySEC.isHex(false), false)
-    assert.equal(keySEC.isHex({}), false)
-    assert.equal(keySEC.isHex([]), false)
-  })
-})
-
-// describe("Check if valid hex-encoded string", function () {
-//   let test = function (t) {
-//     it(t.description, function () {
-//       t.assertions(keySEC.isHex(t.s))
-//     })
-//   }
-//   test({
-//     description: "deadbeef -> true",
-//     s: "deadbeef",
-//     assertions: function (isHex) {
-//       assert.isTrue(isHex)
-//     }
-//   })
-//   test({
-//     description: "deadbee -> false",
-//     s: "deadbee",
-//     assertions: function (isHex) {
-//       assert.isFalse(isHex)
-//     }
-//   })
-//   test({
-//     description: "dEaDbEeF -> true",
-//     s: "dEaDbEeF",
-//     assertions: function (isHex) {
-//       assert.isTrue(isHex)
-//     }
-//   })
-//   test({
-//     description: "123456 -> true",
-//     s: "123456",
-//     assertions: function (isHex) {
-//       assert.isTrue(isHex)
-//     }
-//   })
-//   test({
-//     description: "00aa33 -> true",
-//     s: "00aa33",
-//     assertions: function (isHex) {
-//       assert.isTrue(isHex);
-//     }
-//   })
-//   test({
-//     description: "0xdEaDbEeF -> false",
-//     s: "0xdEaDbEeF",
-//     assertions: function (isHex) {
-//       assert.isFalse(isHex);
-//     }
-//   })
-//   test({
-//     description: ".. -> false",
-//     s: "..",
-//     assertions: function (isHex) {
-//       assert.isFalse(isHex);
-//     }
+//   it('invalid isHex tests', () => {
+//     assert.equal(keySEC.isHex(' 0x0e026d45820d91356fc73d7ff2bdef353ebfe7e9'), false)
+//     assert.equal(keySEC.isHex('fdsjfsd'), false)
+//     assert.equal(keySEC.isHex(' 0xfdsjfsd'), false)
+//     assert.equal(keySEC.isHex('0xfds*jfsd'), false)
+//     assert.equal(keySEC.isHex('0xfds$jfsd'), false)
+//     assert.equal(keySEC.isHex('0xf@dsjfsd'), false)
+//     assert.equal(keySEC.isHex('0xfdsjf!sd'), false)
+//     assert.equal(keySEC.isHex('fds@@jfsd'), false)
+//     assert.equal(keySEC.isHex(24223), false)
+//     assert.equal(keySEC.isHex(null), false)
+//     assert.equal(keySEC.isHex(undefined), false)
+//     assert.equal(keySEC.isHex(false), false)
+//     assert.equal(keySEC.isHex({}), false)
+//     assert.equal(keySEC.isHex([]), false)
 //   })
 // })
+
+  describe("Check if valid hex-encoded string", function () {
+    let test = function (t) {
+      it(t.description, function () {
+        t.assertions(keySEC.isHex(t.s))
+      })
+    }
+    test({
+      description: "deadbeef -> true",
+      s: "deadbeef",
+      assertions: function (isHex) {
+        assert.isTrue(isHex)
+      }
+    })
+    test({
+      description: "deadbee -> false",
+      s: "deadbee",
+      assertions: function (isHex) {
+        assert.isFalse(isHex)
+      }
+    })
+    test({
+      description: "dEaDbEeF -> true",
+      s: "dEaDbEeF",
+      assertions: function (isHex) {
+        assert.isTrue(isHex)
+      }
+    })
+    test({
+      description: "123456 -> true",
+      s: "123456",
+      assertions: function (isHex) {
+        assert.isTrue(isHex)
+      }
+    })
+    test({
+      description: "00aa33 -> true",
+      s: "00aa33",
+      assertions: function (isHex) {
+        assert.isTrue(isHex);
+      }
+    })
+    test({
+      description: "0xdEaDbEeF -> false",
+      s: "0xdEaDbEeF",
+      assertions: function (isHex) {
+        assert.isFalse(isHex);
+      }
+    })
+    test({
+      description: ".. -> false",
+      s: "..",
+      assertions: function (isHex) {
+        assert.isFalse(isHex);
+      }
+    })
+  })
 
 // describe("Check if valid base64-encoded string", function () {
 //   var test = function (t) {
