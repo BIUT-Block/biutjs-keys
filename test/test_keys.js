@@ -19,35 +19,36 @@ const privateKey = utils.getPrivateKey()
 
 // describe('isHex', function () {
 //   it('valid isHex tests', () => {
-//     assert.equal(keySEC.isHex('d9eff37448caba6eb59e5256ada38409c17304c8f681d5c71a1fbad77f5c6ccf'), true)
+//     assert.equal(keySEC.isHex(privateKey), true)
 //     assert.equal(keySEC.isHex('6d244ccbd93cdeb912bef51e422a8d15ba03d2e66920658867940f648b2bb5a6'), true)
 //     assert.equal(keySEC.isHex('fcebc174dda436593354171c476d68653261b07585a54ccb21aa311e24adbd2d'), true)
 //     assert.equal(keySEC.isHex('0xecfaa1a0c4372a2ac5cca1e164510ec8df04f681fc960797f1419802ec00b225'), true)
 //     assert.equal(keySEC.isHex('0x6e0e6d45820d91356fc73d7ff2bdef353ebfe7e9'), true)
-//     assert.equal(keySEC.isHex('0x620e6d45820d91356fc73d7ff2bdef353ebfe7e9'), true)
-//     assert.equal(keySEC.isHex('0x1e0e6d45820d91356fc73d7ff2bdef353ebfe7e9'), true)
-//     assert.equal(keySEC.isHex('0x2e0e6d45820d91356fc73d7ff2bdef353ebfe7e9'), true)
 //     assert.equal(keySEC.isHex('0x220c96d48733a847570c2f0b40daa8793b3ae875b26a4ead1f0f9cead05c3863'), true)
 //     assert.equal(keySEC.isHex('0x2bb303f0ae65c64ef80a3bb3ee8ceef5d50065bd'), true)
-//     assert.equal(keySEC.isHex('0x6e026d45820d91256fc73d7ff2bdef353ebfe7e9'), true)
 //   })
+  // it('valid isHex tests1', () => {
+  //   assert.equal(keySEC.isHex('6d244ccbd93cdeb912bef51e422a8d15ba03d2e66920658867940f648b2bb5a6'), true)
+  // })
 
-//   it('invalid isHex tests', () => {
-//     assert.equal(keySEC.isHex(' 0x0e026d45820d91356fc73d7ff2bdef353ebfe7e9'), false)
-//     assert.equal(keySEC.isHex('fdsjfsd'), false)
-//     assert.equal(keySEC.isHex(' 0xfdsjfsd'), false)
-//     assert.equal(keySEC.isHex('0xfds*jfsd'), false)
-//     assert.equal(keySEC.isHex('0xfds$jfsd'), false)
-//     assert.equal(keySEC.isHex('0xf@dsjfsd'), false)
-//     assert.equal(keySEC.isHex('0xfdsjf!sd'), false)
-//     assert.equal(keySEC.isHex('fds@@jfsd'), false)
-//     assert.equal(keySEC.isHex(24223), false)
-//     assert.equal(keySEC.isHex(null), false)
-//     assert.equal(keySEC.isHex(undefined), false)
-//     assert.equal(keySEC.isHex(false), false)
-//     assert.equal(keySEC.isHex({}), false)
-//     assert.equal(keySEC.isHex([]), false)
-//   })
+
+
+  // it('invalid isHex tests', () => {
+  //   // assert.equal(keySEC.isHex('0x0e026d45820d91356fc73d7ff2bdef353ebfe7e9'), false)
+  //   // assert.equal(keySEC.isHex('fdsjfsd'), false)
+  //   // assert.equal(keySEC.isHex(' 0xfdsjfsd'), false)
+  //   // assert.equal(keySEC.isHex('0xfds*jfsd'), false)
+  //   // assert.equal(keySEC.isHex('0xfds$jfsd'), false)
+  //   // assert.equal(keySEC.isHex('0xf@dsjfsd'), false)
+  //   // assert.equal(keySEC.isHex('0xfdsjf!sd'), false)
+  //   // assert.equal(keySEC.isHex('fds@@jfsd'), false)
+  //   // assert.equal(keySEC.isHex(24223), false)
+  //   // assert.equal(keySEC.isHex(null), false)
+  //   // assert.equal(keySEC.isHex(undefined), false)
+  //   // assert.equal(keySEC.isHex(false), false)
+  //   // assert.equal(keySEC.isHex({}), false)
+  //   // assert.equal(keySEC.isHex([]), false)
+  // })
 // })
 
   describe("Check if valid hex-encoded string", function () {
@@ -107,209 +108,209 @@ const privateKey = utils.getPrivateKey()
     })
   })
 
-// describe("Check if valid base64-encoded string", function () {
-//   var test = function (t) {
-//     it(t.description, function () {
-//       t.assertions(keySEC.isBase64(t.s));
-//     });
-//   };
-//   // test cases: https://github.com/chriso/validator.js/blob/master/test/validators.js
-//   [
-//     "aGVsbG8gd29ybGQ=",
-//     "ZGVhZGIwYg==",
-//     "YWxpdmViZWVm",
-//     "Zg==",
-//     "Zm8=",
-//     "Zm9v",
-//     "Zm9vYg==",
-//     "Zm9vYmE=",
-//     "Zm9vYmFy",
-//     "TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4=",
-//     "Vml2YW11cyBmZXJtZW50dW0gc2VtcGVyIHBvcnRhLg==",
-//     "U3VzcGVuZGlzc2UgbGVjdHVzIGxlbw==",
-//     "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuMPNS1Ufof9EW/M98FNw" +
-//     "UAKrwflsqVxaxQjBQnHQmiI7Vac40t8x7pIb8gLGV6wL7sBTJiPovJ0V7y7oc0Ye" +
-//     "rhKh0Rm4skP2z/jHwwZICgGzBvA0rH8xlhUiTvcwDCJ0kc+fh35hNt8srZQM4619" +
-//     "FTgB66Xmp4EtVyhpQV+t02g6NzK72oZI0vnAvqhpkxLeLiMCyrI416wHm5Tkukhx" +
-//     "QmcL2a6hNOyu0ixX/x2kSFXApEnVrJ+/IxGyfyw8kf4N2IZpW5nEP847lpfj0SZZ" +
-//     "Fwrd1mnfnDbYohX2zRptLy2ZUn06Qo9pkG5ntvFEPo9bfZeULtjYzIl6K8gJ2uGZ" +
-//     "HQIDAQAB"
-//   ].forEach(function (s) {
-//     test({
-//       description: s + " -> true",
-//       s: s,
-//       assertions: function (isBase64) {
-//         assert.isTrue(isBase64);
-//       }
-//     });
-//   });
-//   [
-//     "12345",
-//     "",
-//     "Vml2YW11cyBmZXJtZtesting123",
-//     "Zg=",
-//     "Z===",
-//     "Zm=8",
-//     "=m9vYg==",
-//     "Zm9vYmFy===="
-//   ].forEach(function (s) {
-//     test({
-//       description: s + " -> false",
-//       s: "s",
-//       assertions: function (isBase64) {
-//         assert.isFalse(isBase64);
-//       }
-//     });
-//   });
-// });
+describe("Check if valid base64-encoded string", function () {
+  var test = function (t) {
+    it(t.description, function () {
+      t.assertions(keySEC.isBase64(t.s));
+    });
+  };
+  // test cases: https://github.com/chriso/validator.js/blob/master/test/validators.js
+  [
+    "aGVsbG8gd29ybGQ=",
+    "ZGVhZGIwYg==",
+    "YWxpdmViZWVm",
+    "Zg==",
+    "Zm8=",
+    "Zm9v",
+    "Zm9vYg==",
+    "Zm9vYmE=",
+    "Zm9vYmFy",
+    "TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4=",
+    "Vml2YW11cyBmZXJtZW50dW0gc2VtcGVyIHBvcnRhLg==",
+    "U3VzcGVuZGlzc2UgbGVjdHVzIGxlbw==",
+    "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuMPNS1Ufof9EW/M98FNw" +
+    "UAKrwflsqVxaxQjBQnHQmiI7Vac40t8x7pIb8gLGV6wL7sBTJiPovJ0V7y7oc0Ye" +
+    "rhKh0Rm4skP2z/jHwwZICgGzBvA0rH8xlhUiTvcwDCJ0kc+fh35hNt8srZQM4619" +
+    "FTgB66Xmp4EtVyhpQV+t02g6NzK72oZI0vnAvqhpkxLeLiMCyrI416wHm5Tkukhx" +
+    "QmcL2a6hNOyu0ixX/x2kSFXApEnVrJ+/IxGyfyw8kf4N2IZpW5nEP847lpfj0SZZ" +
+    "Fwrd1mnfnDbYohX2zRptLy2ZUn06Qo9pkG5ntvFEPo9bfZeULtjYzIl6K8gJ2uGZ" +
+    "HQIDAQAB"
+  ].forEach(function (s) {
+    test({
+      description: s + " -> true",
+      s: s,
+      assertions: function (isBase64) {
+        assert.isTrue(isBase64);
+      }
+    });
+  });
+  [
+    "12345",
+    "",
+    "Vml2YW11cyBmZXJtZtesting123",
+    "Zg=",
+    "Z===",
+    "Zm=8",
+    "=m9vYg==",
+    "Zm9vYmFy===="
+  ].forEach(function (s) {
+    test({
+      description: s + " -> false",
+      s: "s",
+      assertions: function (isBase64) {
+        assert.isFalse(isBase64);
+      }
+    });
+  });
+});
 
-// describe("Convert a string to a Buffer", function () {
-//   var test = function (t) {
-//     it(t.description, function () {
-//       t.assertions(keySEC.str2buf(t.params.str, t.params.enc));
-//     });
-//   };
-//   test({
-//     description: "[ascii] hello world",
-//     params: {
-//       str: "hello world",
-//       enc: "ascii"
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "hello world");
-//     }
-//   });
-//   test({
-//     description: "[utf8] hello world",
-//     params: {
-//       str: "hello world",
-//       enc: "utf8"
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "hello world");
-//     }
-//   });
-//   test({
-//     description: "[hex] 68656c6c6f20776f726c64",
-//     params: {
-//       str: "68656c6c6f20776f726c64",
-//       enc: "hex"
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "hello world");
-//     }
-//   });
-//   test({
-//     description: "[inferred hex] 68656c6c6f20776f726c64",
-//     params: {
-//       str: "68656c6c6f20776f726c64"
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "hello world");
-//     }
-//   });
-//   test({
-//     description: "[inferred utf8] hello world",
-//     params: {
-//       str: "hello world"
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "hello world");
-//     }
-//   });
-//   test({
-//     description: "[inferred utf8] hello",
-//     params: {
-//       str: "hello"
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "hello");
-//     }
-//   });
-//   test({
-//     description: "[inferred base64] aGVsbG8gd29ybGQ=",
-//     params: {
-//       str: "aGVsbG8gd29ybGQ="
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "hello world");
-//     }
-//   });
-//   test({
-//     description: "[inferred base64] ZGVhZGIwYg==",
-//     params: {
-//       str: "ZGVhZGIwYg=="
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "deadb0b");
-//     }
-//   });
-//   test({
-//     description: "[inferred base64] aGVsbG8gd29ybGQ=",
-//     params: {
-//       str: "aGVsbG8gd29ybGQ="
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "hello world");
-//     }
-//   });
-//   test({
-//     description: "[inferred base64] YWxpdmViZWVm",
-//     params: {
-//       str: "YWxpdmViZWVm"
-//     },
-//     assertions: function (output) {
-//       assert.strictEqual(output.toString("utf8"), "alivebeef");
-//     }
-//   });
-// });
+describe("Convert a string to a Buffer", function () {
+  var test = function (t) {
+    it(t.description, function () {
+      t.assertions(keySEC.str2buf(t.params.str, t.params.enc));
+    });
+  };
+  test({
+    description: "[ascii] hello world",
+    params: {
+      str: "hello world",
+      enc: "ascii"
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "hello world");
+    }
+  });
+  test({
+    description: "[utf8] hello world",
+    params: {
+      str: "hello world",
+      enc: "utf8"
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "hello world");
+    }
+  });
+  test({
+    description: "[hex] 68656c6c6f20776f726c64",
+    params: {
+      str: "68656c6c6f20776f726c64",
+      enc: "hex"
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "hello world");
+    }
+  });
+  test({
+    description: "[inferred hex] 68656c6c6f20776f726c64",
+    params: {
+      str: "68656c6c6f20776f726c64"
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "hello world");
+    }
+  });
+  test({
+    description: "[inferred utf8] hello world",
+    params: {
+      str: "hello world"
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "hello world");
+    }
+  });
+  test({
+    description: "[inferred utf8] hello",
+    params: {
+      str: "hello"
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "hello");
+    }
+  });
+  test({
+    description: "[inferred base64] aGVsbG8gd29ybGQ=",
+    params: {
+      str: "aGVsbG8gd29ybGQ="
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "hello world");
+    }
+  });
+  test({
+    description: "[inferred base64] ZGVhZGIwYg==",
+    params: {
+      str: "ZGVhZGIwYg=="
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "deadb0b");
+    }
+  });
+  test({
+    description: "[inferred base64] aGVsbG8gd29ybGQ=",
+    params: {
+      str: "aGVsbG8gd29ybGQ="
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "hello world");
+    }
+  });
+  test({
+    description: "[inferred base64] YWxpdmViZWVm",
+    params: {
+      str: "YWxpdmViZWVm"
+    },
+    assertions: function (output) {
+      assert.strictEqual(output.toString("utf8"), "alivebeef");
+    }
+  });
+});
 
-// describe("Check if selected cipher is available", function () {
-//   var test = function (t) {
-//     it(t.description, function () {
-//       t.assertions(keySEC.isCipherAvailable(t.cipher));
-//     });
-//   };
-//   test({
-//     description: "aes-128-ctr should be available",
-//     cipher: "aes-128-ctr",
-//     assertions: function (isAvailable) {
-//       assert.isTrue(isAvailable);
-//     }
-//   });
-//   test({
-//     description: "aes-128-cbc should be available",
-//     cipher: "aes-128-cbc",
-//     assertions: function (isAvailable) {
-//       assert.isTrue(isAvailable);
-//     }
-//   });
-//   test({
-//     description: "roflcipher should not be available",
-//     cipher: "roflcipher",
-//     assertions: function (isAvailable) {
-//       assert.isFalse(isAvailable);
-//     }
-//   });
-// });
+describe("Check if selected cipher is available", function () {
+  var test = function (t) {
+    it(t.description, function () {
+      t.assertions(keySEC.isCipherAvailable(t.cipher));
+    });
+  };
+  test({
+    description: "aes-128-ctr should be available",
+    cipher: "aes-128-ctr",
+    assertions: function (isAvailable) {
+      assert.isTrue(isAvailable);
+    }
+  });
+  test({
+    description: "aes-128-cbc should be available",
+    cipher: "aes-128-cbc",
+    assertions: function (isAvailable) {
+      assert.isTrue(isAvailable);
+    }
+  });
+  test({
+    description: "roflcipher should not be available",
+    cipher: "roflcipher",
+    assertions: function (isAvailable) {
+      assert.isFalse(isAvailable);
+    }
+  });
+});
 
-// describe("Private key recovery", function () {
+describe("Private key recovery", function () {
 
-//   // password used as secret key for aes-256 cipher
-//   var password = "wheethereum";
-//   var secret = crypto.createHash("sha256").update(password).digest("hex");
-//   var cipher = crypto.createCipher("aes-256-cbc", secret);
-//   var encryptedPrivateKey = cipher.update(privateKey, "hex", "base64");
-//   encryptedPrivateKey += cipher.final("base64");
+  // password used as secret key for aes-256 cipher
+  var password = "wheethereum";
+  var secret = crypto.createHash("sha256").update(password).digest("hex");
+  var cipher = crypto.createCipher("aes-256-cbc", secret);
+  var encryptedPrivateKey = cipher.update(privateKey, "hex", "base64");
+  encryptedPrivateKey += cipher.final("base64");
 
-//   // verify private key is recovered by decryption
-//   it(encryptedPrivateKey + " -> " + privateKey.toString("hex"), function () {
-//     var decipher = crypto.createDecipher("aes-256-cbc", secret);
-//     var decryptedPrivateKey = decipher.update(encryptedPrivateKey, "base64", "hex");
-//     decryptedPrivateKey += decipher.final("hex");
-//     assert.strictEqual(decryptedPrivateKey, privateKey.toString("hex"));
-//   });
-// });
+  // verify private key is recovered by decryption
+  it(encryptedPrivateKey + " -> " + privateKey.toString("hex"), function () {
+    var decipher = crypto.createDecipher("aes-256-cbc", secret);
+    var decryptedPrivateKey = decipher.update(encryptedPrivateKey, "base64", "hex");
+    decryptedPrivateKey += decipher.final("hex");
+    assert.strictEqual(decryptedPrivateKey, privateKey.toString("hex"));
+  });
+});
 
 // describe("Derive SEC address from private key", function () {
 //   var test = function (t) {
@@ -363,525 +364,525 @@ const privateKey = utils.getPrivateKey()
 //   });
 // });
 
-// describe("Create random private key, salt and initialization vector", function () {
+describe("Create random private key, salt and initialization vector", function () {
 
-//   var test = function (dk, params) {
-//     assert.property(dk, "privateKey");
-//     assert.isNotNull(dk.privateKey);
-//     assert.instanceOf(dk.privateKey, Buffer);
-//     assert.strictEqual(dk.privateKey.length, params.keyBytes);
+  var test = function (dk, params) {
+    assert.property(dk, "privateKey");
+    assert.isNotNull(dk.privateKey);
+    assert.instanceOf(dk.privateKey, Buffer);
+    assert.strictEqual(dk.privateKey.length, params.keyBytes);
 
-//     assert.property(dk, "iv");
-//     assert.isNotNull(dk.iv);
-//     assert.instanceOf(dk.iv, Buffer);
-//     assert.strictEqual(dk.iv.length, params.ivBytes);
+    assert.property(dk, "iv");
+    assert.isNotNull(dk.iv);
+    assert.instanceOf(dk.iv, Buffer);
+    assert.strictEqual(dk.iv.length, params.ivBytes);
 
-//     assert.property(dk, "salt");
-//     assert.isNotNull(dk.salt);
-//     assert.instanceOf(dk.salt, Buffer);
-//     assert.strictEqual(dk.salt.length, params.keyBytes);
-//   };
+    assert.property(dk, "salt");
+    assert.isNotNull(dk.salt);
+    assert.instanceOf(dk.salt, Buffer);
+    assert.strictEqual(dk.salt.length, params.keyBytes);
+  };
 
-//   var runtests = function (i) {
-//     var runtest = function (params) {
-//       it("create key " + i + ": " + JSON.stringify(params), function (done) {
+  var runtests = function (i) {
+    var runtest = function (params) {
+      it("create key " + i + ": " + JSON.stringify(params), function (done) {
 
-//         // synchronous
-//         test(keySEC.create(), keySEC.constants);
-//         test(keySEC.create(params), params);
+        // synchronous
+        test(keySEC.create(), keySEC.constants);
+        test(keySEC.create(params), params);
 
-//         // asynchronous
-//         keySEC.create(null, function (dk) {
-//           test(dk, keySEC.constants);
-//           keySEC.create(params, function (dk) {
-//             test(dk, params);
-//             done();
-//           });
-//         });
-//       });
-//     };
+        // asynchronous
+        keySEC.create(null, function (dk) {
+          test(dk, keySEC.constants);
+          keySEC.create(params, function (dk) {
+            test(dk, params);
+            done();
+          });
+        });
+      });
+    };
 
-//     runtest(keySEC.constants);
-//     runtest({ keyBytes: 32, ivBytes: 16 });
-//   };
+    runtest(keySEC.constants);
+    runtest({ keyBytes: 32, ivBytes: 16 });
+  };
 
-//   var i;
-//   for (i = 0; i < 25; ++i) runtests(i);
-// });
+  var i;
+  for (i = 0; i < 25; ++i) runtests(i);
+});
 
-// describe("Encryption", function () {
+describe("Encryption", function () {
 
-//   var test = function (t) {
-//     var label = t.input.cipher + ": " + JSON.stringify(t.input.plaintext) +
-//       " -> " + t.expected.ciphertext;
-//     it(label, function () {
-//       var oldCipher = keySEC.constants.cipher;
-//       keySEC.constants.cipher = t.input.cipher;
-//       assert.strictEqual(
-//         keySEC.encrypt(t.input.plaintext, t.input.key, t.input.iv).toString("base64"),
-//         t.expected.ciphertext
-//       );
-//       keySEC.constants.cipher = oldCipher;
-//     });
-//   };
+  var test = function (t) {
+    var label = t.input.cipher + ": " + JSON.stringify(t.input.plaintext) +
+      " -> " + t.expected.ciphertext;
+    it(label, function () {
+      var oldCipher = keySEC.constants.cipher;
+      keySEC.constants.cipher = t.input.cipher;
+      assert.strictEqual(
+        keySEC.encrypt(t.input.plaintext, t.input.key, t.input.iv).toString("base64"),
+        t.expected.ciphertext
+      );
+      keySEC.constants.cipher = oldCipher;
+    });
+  };
 
-//   var runtests = function (t) {
-//     test({
-//       input: {
-//         plaintext: t.plaintext,
-//         key: t.key,
-//         iv: t.iv,
-//         cipher: "aes-128-ctr"
-//       },
-//       expected: {
-//         ciphertext: t.ciphertext.toString("base64")
-//       }
-//     });
-//     test({
-//       input: {
-//         plaintext: t.plaintext.toString("hex"),
-//         key: t.key.toString("hex"),
-//         iv: t.iv.toString("hex"),
-//         cipher: "aes-128-ctr"
-//       },
-//       expected: {
-//         ciphertext: t.ciphertext.toString("base64")
-//       }
-//     });
-//     test({
-//       input: {
-//         plaintext: t.plaintext.toString("base64"),
-//         key: t.key.toString("base64"),
-//         iv: t.iv.toString("base64"),
-//         cipher: "aes-128-ctr"
-//       },
-//       expected: {
-//         ciphertext: t.ciphertext.toString("base64")
-//       }
-//     });
-//   };
+  var runtests = function (t) {
+    test({
+      input: {
+        plaintext: t.plaintext,
+        key: t.key,
+        iv: t.iv,
+        cipher: "aes-128-ctr"
+      },
+      expected: {
+        ciphertext: t.ciphertext.toString("base64")
+      }
+    });
+    test({
+      input: {
+        plaintext: t.plaintext.toString("hex"),
+        key: t.key.toString("hex"),
+        iv: t.iv.toString("hex"),
+        cipher: "aes-128-ctr"
+      },
+      expected: {
+        ciphertext: t.ciphertext.toString("base64")
+      }
+    });
+    test({
+      input: {
+        plaintext: t.plaintext.toString("base64"),
+        key: t.key.toString("base64"),
+        iv: t.iv.toString("base64"),
+        cipher: "aes-128-ctr"
+      },
+      expected: {
+        ciphertext: t.ciphertext.toString("base64")
+      }
+    });
+  };
 
-//   runtests({
-//     plaintext: Buffer.from(
-//       "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
-//       "hex"
-//     ),
-//     ciphertext: Buffer.from(
-//       "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
-//       "hex"
-//     ),
-//     key: Buffer.from("f06d69cdc7da0faffb1008270bca38f5", "hex"),
-//     iv: Buffer.from("6087dab2f9fdbbfaddc31a909735c1e6", "hex")
-//   });
-//   runtests({
-//     plaintext: Buffer.from(
-//       "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
-//       "hex"
-//     ),
-//     ciphertext: Buffer.from(
-//       "d172bf743a674da9cdad04534d56926ef8358534d458fffccd4e6ad2fbde479c",
-//       "hex"
-//     ),
-//     key: Buffer.from("fac192ceb5fd772906bea3e118a69e8b", "hex"),
-//     iv: Buffer.from("83dbcc02d8ccb40e466191a123791e0e", "hex")
-//   });
-// });
+  runtests({
+    plaintext: Buffer.from(
+      "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
+      "hex"
+    ),
+    ciphertext: Buffer.from(
+      "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
+      "hex"
+    ),
+    key: Buffer.from("f06d69cdc7da0faffb1008270bca38f5", "hex"),
+    iv: Buffer.from("6087dab2f9fdbbfaddc31a909735c1e6", "hex")
+  });
+  runtests({
+    plaintext: Buffer.from(
+      "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
+      "hex"
+    ),
+    ciphertext: Buffer.from(
+      "d172bf743a674da9cdad04534d56926ef8358534d458fffccd4e6ad2fbde479c",
+      "hex"
+    ),
+    key: Buffer.from("fac192ceb5fd772906bea3e118a69e8b", "hex"),
+    iv: Buffer.from("83dbcc02d8ccb40e466191a123791e0e", "hex")
+  });
+});
 
-// describe("Decryption", function () {
+describe("Decryption", function () {
 
-//   var test = function (t) {
-//     var label = t.input.cipher + ": " + JSON.stringify(t.input.ciphertext) + " -> " + t.expected.plaintext;
-//     it(label, function () {
-//       var oldCipher = keySEC.constants.cipher;
-//       keySEC.constants.cipher = t.input.cipher;
-//       assert.strictEqual(
-//         keySEC.decrypt(t.input.ciphertext, t.input.key, t.input.iv).toString("hex"),
-//         t.expected.plaintext
-//       );
-//       keySEC.constants.cipher = oldCipher;
-//     });
-//   };
+  var test = function (t) {
+    var label = t.input.cipher + ": " + JSON.stringify(t.input.ciphertext) + " -> " + t.expected.plaintext;
+    it(label, function () {
+      var oldCipher = keySEC.constants.cipher;
+      keySEC.constants.cipher = t.input.cipher;
+      assert.strictEqual(
+        keySEC.decrypt(t.input.ciphertext, t.input.key, t.input.iv).toString("hex"),
+        t.expected.plaintext
+      );
+      keySEC.constants.cipher = oldCipher;
+    });
+  };
 
-//   var runtests = function (t) {
-//     test({
-//       input: {
-//         ciphertext: t.ciphertext,
-//         key: t.key,
-//         iv: t.iv,
-//         cipher: "aes-128-ctr"
-//       },
-//       expected: {
-//         plaintext: t.plaintext.toString("hex")
-//       }
-//     });
-//     test({
-//       input: {
-//         ciphertext: t.ciphertext.toString("hex"),
-//         key: t.key.toString("hex"),
-//         iv: t.iv.toString("hex"),
-//         cipher: "aes-128-ctr"
-//       },
-//       expected: {
-//         plaintext: t.plaintext.toString("hex")
-//       }
-//     });
-//     test({
-//       input: {
-//         ciphertext: t.ciphertext.toString("base64"),
-//         key: t.key.toString("base64"),
-//         iv: t.iv.toString("base64"),
-//         cipher: "aes-128-ctr"
-//       },
-//       expected: {
-//         plaintext: t.plaintext.toString("hex")
-//       }
-//     });
-//   };
-//   runtests({
-//     plaintext: Buffer.from(
-//       "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
-//       "hex"
-//     ),
-//     ciphertext: Buffer.from(
-//       "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
-//       "hex"
-//     ),
-//     key: Buffer.from("f06d69cdc7da0faffb1008270bca38f5", "hex"),
-//     iv: Buffer.from("6087dab2f9fdbbfaddc31a909735c1e6", "hex")
-//   });
-//   runtests({
-//     plaintext: Buffer.from(
-//       "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
-//       "hex"
-//     ),
-//     ciphertext: Buffer.from(
-//       "d172bf743a674da9cdad04534d56926ef8358534d458fffccd4e6ad2fbde479c",
-//       "hex"
-//     ),
-//     key: Buffer.from("fac192ceb5fd772906bea3e118a69e8b", "hex"),
-//     iv: Buffer.from("83dbcc02d8ccb40e466191a123791e0e", "hex")
-//   });
-// });
+  var runtests = function (t) {
+    test({
+      input: {
+        ciphertext: t.ciphertext,
+        key: t.key,
+        iv: t.iv,
+        cipher: "aes-128-ctr"
+      },
+      expected: {
+        plaintext: t.plaintext.toString("hex")
+      }
+    });
+    test({
+      input: {
+        ciphertext: t.ciphertext.toString("hex"),
+        key: t.key.toString("hex"),
+        iv: t.iv.toString("hex"),
+        cipher: "aes-128-ctr"
+      },
+      expected: {
+        plaintext: t.plaintext.toString("hex")
+      }
+    });
+    test({
+      input: {
+        ciphertext: t.ciphertext.toString("base64"),
+        key: t.key.toString("base64"),
+        iv: t.iv.toString("base64"),
+        cipher: "aes-128-ctr"
+      },
+      expected: {
+        plaintext: t.plaintext.toString("hex")
+      }
+    });
+  };
+  runtests({
+    plaintext: Buffer.from(
+      "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
+      "hex"
+    ),
+    ciphertext: Buffer.from(
+      "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
+      "hex"
+    ),
+    key: Buffer.from("f06d69cdc7da0faffb1008270bca38f5", "hex"),
+    iv: Buffer.from("6087dab2f9fdbbfaddc31a909735c1e6", "hex")
+  });
+  runtests({
+    plaintext: Buffer.from(
+      "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
+      "hex"
+    ),
+    ciphertext: Buffer.from(
+      "d172bf743a674da9cdad04534d56926ef8358534d458fffccd4e6ad2fbde479c",
+      "hex"
+    ),
+    key: Buffer.from("fac192ceb5fd772906bea3e118a69e8b", "hex"),
+    iv: Buffer.from("83dbcc02d8ccb40e466191a123791e0e", "hex")
+  });
+});
 
-// // Test vectors:
+// Test vectors:
 
-// describe("Key derivation", function () {
+describe("Key derivation", function () {
 
-//   var test = function (t) {
-//     var pbkdf2, pbkdf2Sync;
+  var test = function (t) {
+    var pbkdf2, pbkdf2Sync;
 
-//     before(function () {
-//       pbkdf2 = keySEC.crypto.pbkdf2;
-//       pbkdf2Sync = keySEC.crypto.pbkdf2Sync;
-//     });
+    before(function () {
+      pbkdf2 = keySEC.crypto.pbkdf2;
+      pbkdf2Sync = keySEC.crypto.pbkdf2Sync;
+    });
 
-//     after(function () {
-//       keySEC.crypto.pbkdf2 = pbkdf2;
-//       keySEC.crypto.pbkdf2Sync = pbkdf2Sync;
-//     });
+    after(function () {
+      keySEC.crypto.pbkdf2 = pbkdf2;
+      keySEC.crypto.pbkdf2Sync = pbkdf2Sync;
+    });
 
-//     it("using crypto: " + t.input.kdf, function (done) {
-//       var derivedKey;
-//       this.timeout(TIMEOUT);
-//       keySEC.crypto.pbkdf2 = pbkdf2;
-//       keySEC.crypto.pbkdf2Sync = pbkdf2Sync;
+    it("using crypto: " + t.input.kdf, function (done) {
+      var derivedKey;
+      this.timeout(TIMEOUT);
+      keySEC.crypto.pbkdf2 = pbkdf2;
+      keySEC.crypto.pbkdf2Sync = pbkdf2Sync;
 
-//       // synchronous
-//       derivedKey = keySEC.deriveKey(
-//         t.input.password,
-//         t.input.salt,
-//         { kdf: t.input.kdf }
-//       );
-//       if (derivedKey.error) return done(derivedKey);
-//       assert.strictEqual(derivedKey.toString("hex"), t.expected);
+      // synchronous
+      derivedKey = keySEC.deriveKey(
+        t.input.password,
+        t.input.salt,
+        { kdf: t.input.kdf }
+      );
+      if (derivedKey.error) return done(derivedKey);
+      assert.strictEqual(derivedKey.toString("hex"), t.expected);
 
-//       // asynchronous
-//       keySEC.deriveKey(
-//         t.input.password,
-//         t.input.salt,
-//         { kdf: t.input.kdf },
-//         function (derivedKey) {
-//           if (derivedKey.error) return done(derivedKey);
-//           assert.strictEqual(derivedKey.toString("hex"), t.expected);
-//           done();
-//         }
-//       );
-//     });
-//     it("using sjcl: " + t.input.kdf, function (done) {
-//       var derivedKey;
-//       this.timeout(TIMEOUT);
-//       keySEC.crypto.pbkdf2 = undefined;
-//       keySEC.crypto.pbkdf2Sync = undefined;
+      // asynchronous
+      keySEC.deriveKey(
+        t.input.password,
+        t.input.salt,
+        { kdf: t.input.kdf },
+        function (derivedKey) {
+          if (derivedKey.error) return done(derivedKey);
+          assert.strictEqual(derivedKey.toString("hex"), t.expected);
+          done();
+        }
+      );
+    });
+    it("using sjcl: " + t.input.kdf, function (done) {
+      var derivedKey;
+      this.timeout(TIMEOUT);
+      keySEC.crypto.pbkdf2 = undefined;
+      keySEC.crypto.pbkdf2Sync = undefined;
 
-//       // synchronous
-//       derivedKey = keySEC.deriveKey(
-//         t.input.password,
-//         t.input.salt,
-//         { kdf: t.input.kdf }
-//       );
-//       if (derivedKey.error) return done(derivedKey);
-//       assert.strictEqual(derivedKey.toString("hex"), t.expected);
+      // synchronous
+      derivedKey = keySEC.deriveKey(
+        t.input.password,
+        t.input.salt,
+        { kdf: t.input.kdf }
+      );
+      if (derivedKey.error) return done(derivedKey);
+      assert.strictEqual(derivedKey.toString("hex"), t.expected);
 
-//       // asynchronous
-//       keySEC.deriveKey(
-//         t.input.password,
-//         t.input.salt,
-//         { kdf: t.input.kdf },
-//         function (derivedKey) {
-//           if (derivedKey.error) return done(derivedKey);
-//           assert.strictEqual(derivedKey.toString("hex"), t.expected);
-//           done();
-//         }
-//       );
-//     });
-//   };
+      // asynchronous
+      keySEC.deriveKey(
+        t.input.password,
+        t.input.salt,
+        { kdf: t.input.kdf },
+        function (derivedKey) {
+          if (derivedKey.error) return done(derivedKey);
+          assert.strictEqual(derivedKey.toString("hex"), t.expected);
+          done();
+        }
+      );
+    });
+  };
 
-//   test({
-//     input: {
-//       password: "testpassword",
-//       salt: "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd",
-//       kdf: "pbkdf2-sha256"
-//     },
-//     expected: "f06d69cdc7da0faffb1008270bca38f5e31891a3a773950e6d0fea48a7188551"
-//   });
-//   test({
-//     input: {
-//       password: "testpassword",
-//       salt: "ab0c7876052600dd703518d6fc3fe8984592145b591fc8fb5c6d43190334ba19",
-//       kdf: "scrypt"
-//     },
-//     expected: "fac192ceb5fd772906bea3e118a69e8bbb5cc24229e20d8766fd298291bba6bd"
-//   });
-// });
+  test({
+    input: {
+      password: "testpassword",
+      salt: "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd",
+      kdf: "pbkdf2-sha256"
+    },
+    expected: "f06d69cdc7da0faffb1008270bca38f5e31891a3a773950e6d0fea48a7188551"
+  });
+  test({
+    input: {
+      password: "testpassword",
+      salt: "ab0c7876052600dd703518d6fc3fe8984592145b591fc8fb5c6d43190334ba19",
+      kdf: "scrypt"
+    },
+    expected: "fac192ceb5fd772906bea3e118a69e8bbb5cc24229e20d8766fd298291bba6bd"
+  });
+});
 
-// describe("Message authentication code", function () {
+describe("Message authentication code", function () {
 
-//   var test = function (t) {
-//     it("convert " + JSON.stringify(t.input) + " -> " + t.output, function () {
-//       var mac = keySEC.getMAC(t.input.derivedKey, t.input.ciphertext);
-//       assert.strictEqual(mac, t.output);
-//     });
-//   };
+  var test = function (t) {
+    it("convert " + JSON.stringify(t.input) + " -> " + t.output, function () {
+      var mac = keySEC.getMAC(t.input.derivedKey, t.input.ciphertext);
+      assert.strictEqual(mac, t.output);
+    });
+  };
 
-//   test({
-//     input: {
-//       derivedKey: "f06d69cdc7da0faffb1008270bca38f5e31891a3a773950e6d0fea48a7188551",
-//       ciphertext: "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46"
-//     },
-//     output: "517ead924a9d0dc3124507e3393d175ce3ff7c1e96529c6c555ce9e51205e9b2"
-//   });
-//   test({
-//     input: {
-//       derivedKey: "fac192ceb5fd772906bea3e118a69e8bbb5cc24229e20d8766fd298291bba6bd",
-//       ciphertext: "d172bf743a674da9cdad04534d56926ef8358534d458fffccd4e6ad2fbde479c"
-//     },
-//     output: "2103ac29920d71da29f15d75b4a16dbe95cfd7ff8faea1056c33131d846e3097"
-//   });
-// });
+  test({
+    input: {
+      derivedKey: "f06d69cdc7da0faffb1008270bca38f5e31891a3a773950e6d0fea48a7188551",
+      ciphertext: "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46"
+    },
+    output: "517ead924a9d0dc3124507e3393d175ce3ff7c1e96529c6c555ce9e51205e9b2"
+  });
+  test({
+    input: {
+      derivedKey: "fac192ceb5fd772906bea3e118a69e8bbb5cc24229e20d8766fd298291bba6bd",
+      ciphertext: "d172bf743a674da9cdad04534d56926ef8358534d458fffccd4e6ad2fbde479c"
+    },
+    output: "2103ac29920d71da29f15d75b4a16dbe95cfd7ff8faea1056c33131d846e3097"
+  });
+});
 
-// describe("Dump private key", function () {
+describe("Dump private key", function () {
 
-//   var test = function (t) {
+  var test = function (t) {
 
-//     it(t.input.kdf, function (done) {
-//       var keyObject;
-//       this.timeout(TIMEOUT);
+    it(t.input.kdf, function (done) {
+      var keyObject;
+      this.timeout(TIMEOUT);
 
-//       // synchronous
-//       keyObject = keySEC.dump(
-//         t.input.password,
-//         t.input.privateKey,
-//         t.input.salt,
-//         t.input.iv,
-//         { kdf: t.input.kdf }
-//       );
-//       if (keyObject.error) return done(keyObject);
-//       checkKeyObj.structure(keySEC, keyObject);
-//       checkKeyObj.values(keySEC, t, keyObject);
+      // synchronous
+      keyObject = keySEC.dump(
+        t.input.password,
+        t.input.privateKey,
+        t.input.salt,
+        t.input.iv,
+        { kdf: t.input.kdf }
+      );
+      if (keyObject.error) return done(keyObject);
+      checkKeyObj.structure(keySEC, keyObject);
+      checkKeyObj.values(keySEC, t, keyObject);
 
-//       // asynchronous
-//       keySEC.dump(
-//         t.input.password,
-//         t.input.privateKey,
-//         t.input.salt,
-//         t.input.iv,
-//         { kdf: t.input.kdf },
-//         function (keyObj) {
-//           if (keyObj.error) return done(keyObj);
-//           checkKeyObj.structure(keySEC, keyObj);
-//           checkKeyObj.values(keySEC, t, keyObj);
-//           done();
-//         }
-//       );
-//     });
-//   };
-//   test({
-//     input: {
-//       password: "testpassword",
-//       privateKey: Buffer.from(
-//         "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
-//         "hex"
-//       ),
-//       salt: "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd",
-//       iv: Buffer.from("6087dab2f9fdbbfaddc31a909735c1e6", "hex"),
-//       kdf: "pbkdf2-sha256"
-//     },
-//     expected: {
-//       address: "008aeeda4d805471df9b2a5b0f38a0c3bcba786b",
-//       crypto: {
-//         cipher: "aes-128-ctr",
-//         cipherparams: {
-//           iv: "6087dab2f9fdbbfaddc31a909735c1e6"
-//         },
-//         ciphertext: "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
-//         kdf: "pbkdf2",
-//         kdfparams: {
-//           c: 262144,
-//           dklen: 32,
-//           prf: "hmac-sha256",
-//           salt: "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd"
-//         },
-//         mac: "517ead924a9d0dc3124507e3393d175ce3ff7c1e96529c6c555ce9e51205e9b2"
-//       },
-//       version: 3
-//     }
-//   });
-//   test({
-//     input: {
-//       password: "testpassword",
-//       privateKey: "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
-//       salt: "ab0c7876052600dd703518d6fc3fe8984592145b591fc8fb5c6d43190334ba19",
-//       iv: "83dbcc02d8ccb40e466191a123791e0e",
-//       kdf: "scrypt"
-//     },
-//     expected: {
-//       address: "008aeeda4d805471df9b2a5b0f38a0c3bcba786b",
-//       crypto: {
-//         cipher: "aes-128-ctr",
-//         cipherparams: {
-//           iv: "83dbcc02d8ccb40e466191a123791e0e"
-//         },
-//         ciphertext: "d172bf743a674da9cdad04534d56926ef8358534d458fffccd4e6ad2fbde479c",
-//         kdf: "scrypt",
-//         kdfparams: {
-//           dklen: 32,
-//           n: 262144,
-//           r: 1,
-//           p: 8,
-//           salt: "ab0c7876052600dd703518d6fc3fe8984592145b591fc8fb5c6d43190334ba19"
-//         },
-//         mac: "2103ac29920d71da29f15d75b4a16dbe95cfd7ff8faea1056c33131d846e3097"
-//       },
-//       version: 3
-//     }
-//   });
-// });
+      // asynchronous
+      keySEC.dump(
+        t.input.password,
+        t.input.privateKey,
+        t.input.salt,
+        t.input.iv,
+        { kdf: t.input.kdf },
+        function (keyObj) {
+          if (keyObj.error) return done(keyObj);
+          checkKeyObj.structure(keySEC, keyObj);
+          checkKeyObj.values(keySEC, t, keyObj);
+          done();
+        }
+      );
+    });
+  };
+  test({
+    input: {
+      password: "testpassword",
+      privateKey: Buffer.from(
+        "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
+        "hex"
+      ),
+      salt: "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd",
+      iv: Buffer.from("6087dab2f9fdbbfaddc31a909735c1e6", "hex"),
+      kdf: "pbkdf2-sha256"
+    },
+    expected: {
+      address: "008aeeda4d805471df9b2a5b0f38a0c3bcba786b",
+      crypto: {
+        cipher: "aes-128-ctr",
+        cipherparams: {
+          iv: "6087dab2f9fdbbfaddc31a909735c1e6"
+        },
+        ciphertext: "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
+        kdf: "pbkdf2",
+        kdfparams: {
+          c: 262144,
+          dklen: 32,
+          prf: "hmac-sha256",
+          salt: "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd"
+        },
+        mac: "517ead924a9d0dc3124507e3393d175ce3ff7c1e96529c6c555ce9e51205e9b2"
+      },
+      version: 3
+    }
+  });
+  test({
+    input: {
+      password: "testpassword",
+      privateKey: "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
+      salt: "ab0c7876052600dd703518d6fc3fe8984592145b591fc8fb5c6d43190334ba19",
+      iv: "83dbcc02d8ccb40e466191a123791e0e",
+      kdf: "scrypt"
+    },
+    expected: {
+      address: "008aeeda4d805471df9b2a5b0f38a0c3bcba786b",
+      crypto: {
+        cipher: "aes-128-ctr",
+        cipherparams: {
+          iv: "83dbcc02d8ccb40e466191a123791e0e"
+        },
+        ciphertext: "d172bf743a674da9cdad04534d56926ef8358534d458fffccd4e6ad2fbde479c",
+        kdf: "scrypt",
+        kdfparams: {
+          dklen: 32,
+          n: 262144,
+          r: 1,
+          p: 8,
+          salt: "ab0c7876052600dd703518d6fc3fe8984592145b591fc8fb5c6d43190334ba19"
+        },
+        mac: "2103ac29920d71da29f15d75b4a16dbe95cfd7ff8faea1056c33131d846e3097"
+      },
+      version: 3
+    }
+  });
+});
 
-// describe("Generate keystore filename", function () {
-//   var test = function (t) {
-//     it(t.address, function () {
-//       t.assertions(keySEC.generateKeystoreFilename(t.address));
-//     });
-//   };
-//   test({
-//     address: "0000000000000000000000000000000000000b0b",
-//     assertions: function (filename) {
-//       var splitFilename = filename.split("--");
-//       assert.strictEqual(splitFilename.length, 3);
-//       assert.strictEqual(splitFilename[0], "UTC");
-//       assert.strictEqual(splitFilename[2], "0000000000000000000000000000000000000b0b");
-//     }
-//   });
-//   test({
-//     address: "008aeeda4d805471df9b2a5b0f38a0c3bcba786b",
-//     assertions: function (filename) {
-//       var splitFilename = filename.split("--");
-//       assert.strictEqual(splitFilename.length, 3);
-//       assert.strictEqual(splitFilename[0], "UTC");
-//       assert.strictEqual(splitFilename[2], "008aeeda4d805471df9b2a5b0f38a0c3bcba786b");
-//     }
-//   });
-//   test({
-//     address: "c9a9adc70a9cbf077ae4bd0a170d88592914e0cc",
-//     assertions: function (filename) {
-//       var splitFilename = filename.split("--");
-//       assert.strictEqual(splitFilename.length, 3);
-//       assert.strictEqual(splitFilename[0], "UTC");
-//       assert.strictEqual(splitFilename[2], "c9a9adc70a9cbf077ae4bd0a170d88592914e0cc");
-//     }
-//   });
-// });
+describe("Generate keystore filename", function () {
+  var test = function (t) {
+    it(t.address, function () {
+      t.assertions(keySEC.generateKeystoreFilename(t.address));
+    });
+  };
+  test({
+    address: "0000000000000000000000000000000000000b0b",
+    assertions: function (filename) {
+      var splitFilename = filename.split("--");
+      assert.strictEqual(splitFilename.length, 3);
+      assert.strictEqual(splitFilename[0], "UTC");
+      assert.strictEqual(splitFilename[2], "0000000000000000000000000000000000000b0b");
+    }
+  });
+  test({
+    address: "008aeeda4d805471df9b2a5b0f38a0c3bcba786b",
+    assertions: function (filename) {
+      var splitFilename = filename.split("--");
+      assert.strictEqual(splitFilename.length, 3);
+      assert.strictEqual(splitFilename[0], "UTC");
+      assert.strictEqual(splitFilename[2], "008aeeda4d805471df9b2a5b0f38a0c3bcba786b");
+    }
+  });
+  test({
+    address: "c9a9adc70a9cbf077ae4bd0a170d88592914e0cc",
+    assertions: function (filename) {
+      var splitFilename = filename.split("--");
+      assert.strictEqual(splitFilename.length, 3);
+      assert.strictEqual(splitFilename[0], "UTC");
+      assert.strictEqual(splitFilename[2], "c9a9adc70a9cbf077ae4bd0a170d88592914e0cc");
+    }
+  });
+});
 
-// describe("Export to file", function () {
+describe("Export to file", function () {
 
-//   var keyObj;
+  var keyObj;
 
-//   if (keySEC.browser) return;
+  if (keySEC.browser) return;
 
-//   keyObj = {
-//     address: "008aeeda4d805471df9b2a5b0f38a0c3bcba786b",
-//     crypto: {
-//       cipher: "aes-128-ctr",
-//       ciphertext: "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
-//       cipherparams: {
-//         iv: "6087dab2f9fdbbfaddc31a909735c1e6"
-//       },
-//       mac: "517ead924a9d0dc3124507e3393d175ce3ff7c1e96529c6c555ce9e51205e9b2",
-//       kdf: "pbkdf2",
-//       kdfparams: {
-//         c: 262144,
-//         dklen: 32,
-//         prf: "hmac-sha256",
-//         salt: "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd"
-//       }
-//     },
-//     id: "e13b209c-3b2f-4327-bab0-3bef2e51630d",
-//     version: 3
-//   };
+  keyObj = {
+    address: "008aeeda4d805471df9b2a5b0f38a0c3bcba786b",
+    crypto: {
+      cipher: "aes-128-ctr",
+      ciphertext: "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
+      cipherparams: {
+        iv: "6087dab2f9fdbbfaddc31a909735c1e6"
+      },
+      mac: "517ead924a9d0dc3124507e3393d175ce3ff7c1e96529c6c555ce9e51205e9b2",
+      kdf: "pbkdf2",
+      kdfparams: {
+        c: 262144,
+        dklen: 32,
+        prf: "hmac-sha256",
+        salt: "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd"
+      }
+    },
+    id: "e13b209c-3b2f-4327-bab0-3bef2e51630d",
+    version: 3
+  };
 
-//   it("export key to json file", function (done) {
-//     var keypath, outfile;
-//     this.timeout(TIMEOUT);
+  it("export key to json file", function (done) {
+    var keypath, outfile;
+    this.timeout(TIMEOUT);
 
-//     // synchronous
-//     keypath = keySEC.exportToFile(keyObj);
-//     outfile = keypath.split("/");
-//     assert.isArray(outfile);
-//     outfile = outfile[outfile.length - 1];
-//     assert.strictEqual(outfile.slice(0, 5), "UTC--");
-//     assert.isAbove(outfile.indexOf(keyObj.address), -1);
-//     fs.unlinkSync(keypath);
+    // synchronous
+    keypath = keySEC.exportToFile(keyObj);
+    outfile = keypath.split("/");
+    assert.isArray(outfile);
+    outfile = outfile[outfile.length - 1];
+    assert.strictEqual(outfile.slice(0, 5), "UTC--");
+    assert.isAbove(outfile.indexOf(keyObj.address), -1);
+    fs.unlinkSync(keypath);
 
-//     // asynchronous
-//     keySEC.exportToFile(keyObj, null, function (keyPath) {
-//       var outFile = keyPath.split("/");
-//       assert.isArray(outFile);
-//       outFile = outFile[outFile.length - 1];
-//       assert.strictEqual(outFile.slice(0, 5), "UTC--");
-//       assert.isAbove(outFile.indexOf(keyObj.address), -1);
-//       fs.unlink(keyPath, function (exc) {
-//         if (exc) return done(exc);
-//         done();
-//       });
-//     });
-//   });
-//   it("export key to json (browser)", function (done) {
-//     var json;
-//     this.timeout(TIMEOUT);
-//     keySEC.browser = true;
+    // asynchronous
+    keySEC.exportToFile(keyObj, null, function (keyPath) {
+      var outFile = keyPath.split("/");
+      assert.isArray(outFile);
+      outFile = outFile[outFile.length - 1];
+      assert.strictEqual(outFile.slice(0, 5), "UTC--");
+      assert.isAbove(outFile.indexOf(keyObj.address), -1);
+      fs.unlink(keyPath, function (exc) {
+        if (exc) return done(exc);
+        done();
+      });
+    });
+  });
+  it("export key to json (browser)", function (done) {
+    var json;
+    this.timeout(TIMEOUT);
+    keySEC.browser = true;
 
-//     // synchronous
-//     json = keySEC.exportToFile(keyObj);
-//     assert.strictEqual(json, JSON.stringify(keyObj));
+    // synchronous
+    json = keySEC.exportToFile(keyObj);
+    assert.strictEqual(json, JSON.stringify(keyObj));
 
-//     // asynchronous
-//     keySEC.exportToFile(keyObj, null, function (json) {
-//       assert.strictEqual(json, JSON.stringify(keyObj));
-//       keySEC.browser = false;
-//       done();
-//     });
-//   });
-// });
+    // asynchronous
+    keySEC.exportToFile(keyObj, null, function (json) {
+      assert.strictEqual(json, JSON.stringify(keyObj));
+      keySEC.browser = false;
+      done();
+    });
+  });
+});
 
 // describe("Import from keystore file", function () {
 

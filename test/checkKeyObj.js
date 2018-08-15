@@ -4,9 +4,8 @@ var assert = require("chai").assert;
 var isUUID = require("validator").isUUID;
 const secKeys = require("../src/index.js")
 const keySEC = new secKeys()
-
-var isHex = keySEC.isHex()
-// var isHex = require("../").isHex;
+// var isHex = keySEC.isHex()
+// var isHex = require("../src/index.js").isHex
 
 module.exports = {
 
@@ -27,7 +26,7 @@ module.exports = {
     assert.strictEqual(keyObjectCrypto.cipherparams.iv.length, 32);
     assert.property(keyObjectCrypto, "ciphertext");
     assert(keyObjectCrypto.ciphertext.length >= 64);
-    assert.isTrue(isHex(keyObjectCrypto.ciphertext));
+    assert.isTrue(keySEC.isHex(keyObjectCrypto.ciphertext));
     assert.property(keyObjectCrypto, "kdf");
     assert(keyObjectCrypto.kdf === "pbkdf2" || keyObjectCrypto.kdf === "scrypt");
     assert.property(keyObjectCrypto, "kdfparams");
@@ -46,10 +45,10 @@ module.exports = {
     assert(keyObjectCrypto.kdfparams.dklen >= 32);
     assert.property(keyObjectCrypto.kdfparams, "salt");
     assert(keyObjectCrypto.kdfparams.salt.length >= 32);
-    assert.isTrue(isHex(keyObjectCrypto.kdfparams.salt));
+    assert.isTrue(keySEC.isHex(keyObjectCrypto.kdfparams.salt));
     assert.property(keyObjectCrypto, "mac");
     assert.strictEqual(keyObjectCrypto.mac.length, 64);
-    assert.isTrue(isHex(keyObjectCrypto.mac));
+    assert.isTrue(keySEC.isHex(keyObjectCrypto.mac));
     assert.property(keyObject, "id");
     assert.strictEqual(keyObject.id.length, 36);
     assert.isTrue(isUUID(keyObject.id));

@@ -6,8 +6,15 @@ const uuid = require("uuid")
 const secp256k1 = require("secp256k1/elliptic")
 const createKeccakHash = require("keccak/js")
 
+function isFunction (f) {
+    return typeof f === "function";
+  }
+  
+  function keccak256 (buffer) {
+    return createKeccakHash("keccak256").update(buffer).digest();
+  }
 
-  function str2buf (str, enc) {
+function str2buf (str, enc) {
     if (!str || str.constructor !== String) return str;
     if (!enc && this.util.isHexString(str, length)) enc = "hex";
     if (!enc && this.isBase64(str)) enc = "base64";
@@ -23,6 +30,7 @@ class secKeys {
         //this.utils.privateKeyToAddress()
         // generatePrivateKey()
         // generatePublicKey()
+
         this.constants = {
             // Symmetric cipher for private key encryption
             cipher: "aes-128-ctr",
@@ -119,6 +127,23 @@ class secKeys {
     }
 
     /**
+ * Derive Ethereum address from private key.
+ * @param {buffer|string} privateKey ECDSA private key.
+ * @return {string} Hex-encoded Ethereum address.
+ */
+    privateKeyToAddress (privateKey) {
+        var privateKeyBuffer, publicKey;
+        privateKeyBuffer = this.str2buf(privateKey);
+        if (privateKeyBuffer.length < 32) {
+            privateKeyBuffer = Buffer.concat([
+                Buffer.alloc(32 - privateKeyBuffer.length, 0),
+                privateKeyBuffer
+            ]);
+        }
+        publicKey = secp256k1.publicKeyCreate(privateKeyBuffer, false).slice(1);
+        return "0x" + keccak256(publicKey).slice(-20).toString("hex");
+    }
+    /**
     * Symmetric private key encryption using secret (derived) key.
     * @param {buffer|string} plaintext Data to be encrypted.
     * @param {buffer|string} key Secret key.
@@ -183,10 +208,10 @@ class secKeys {
         var self = this;
         if (this.scrypt === null) this.scrypt = require("./scrypt")
         if (isFunction(this.scrypt)) {
-            this.scrypt = this.scrypt(options.kdfparams.memory || this.scrypt.memory);
+            this.scrypt = this.scrypt(options.kdfparams.memory || this.constants.scrypt.memory);
         }
         if (!isFunction(cb)) {
-            return Buffer.from(this.scrypt.to_hex(this.constants.scrypt.crypto_scrypt(
+            return Buffer.from(this.scrypt.to_hex(this.scrypt.crypto_scrypt(
                 password,
                 salt,
                 options.kdfparams.n || this.constants.scrypt.n,
@@ -296,7 +321,7 @@ class secKeys {
         ivBytes = params.ivBytes || this.constants.ivBytes;
 
         function checkBoundsAndCreateObject (randomBytes) {
-             var privateKey = str2buf(utils.getPrivateKey(), 'hex')
+            var privateKey = str2buf(utils.getPrivateKey(), 'hex')
             // var privateKey = randomBytes.slice(0, keyBytes);
             if (!secp256k1.privateKeyVerify(privateKey)) return self.create(params, cb);
             return {
@@ -340,7 +365,7 @@ class secKeys {
         ciphertext = this.encrypt(privateKey, derivedKey.slice(0, 16), iv, algo).toString("hex");
 
         keyObject = {
-            address: this.utils.privateKeyToAddress(privateKey).slice(2),
+            address: this.privateKeyToAddress(privateKey).slice(2),
             crypto: {
                 cipher: options.cipher || this.constants.cipher,
                 ciphertext: ciphertext,
