@@ -838,20 +838,20 @@ describe("Export to file", function () {
     },
     id: "e13b209c-3b2f-4327-bab0-3bef2e51630d",
     version: 3
-  };
+  }
 
   it("export key to json file", function (done) {
-    var keypath, outfile;
-    this.timeout(TIMEOUT);
+    var keypath, outfile
+    this.timeout(TIMEOUT)
 
     // synchronous
-    keypath = keySEC.exportToFile(keyObj);
-    outfile = keypath.split("/");
-    assert.isArray(outfile);
-    outfile = outfile[outfile.length - 1];
-    assert.strictEqual(outfile.slice(0, 5), "UTC--");
-    assert.isAbove(outfile.indexOf(keyObj.address), -1);
-    fs.unlinkSync(keypath);
+    keypath = keySEC.exportToFile(keyObj)
+    outfile = keypath.split("/")
+    assert.isArray(outfile)
+    outfile = outfile[outfile.length - 1]
+    assert.strictEqual(outfile.slice(0, 5), "UTC--")
+    assert.isAbove(outfile.indexOf(keyObj.address), -1)
+    fs.unlinkSync(keypath)
 
     // asynchronous
     keySEC.exportToFile(keyObj, null, function (keyPath) {
@@ -861,11 +861,11 @@ describe("Export to file", function () {
       assert.strictEqual(outFile.slice(0, 5), "UTC--");
       assert.isAbove(outFile.indexOf(keyObj.address), -1);
       fs.unlink(keyPath, function (exc) {
-        if (exc) return done(exc);
-        done();
-      });
-    });
-  });
+        if (exc) return done(exc)
+        done()
+      })
+    })
+  })
   it("export key to json (browser)", function (done) {
     var json;
     this.timeout(TIMEOUT);
@@ -879,10 +879,10 @@ describe("Export to file", function () {
     keySEC.exportToFile(keyObj, null, function (json) {
       assert.strictEqual(json, JSON.stringify(keyObj));
       keySEC.browser = false;
-      done();
-    });
-  });
-});
+      done()
+    })
+  })
+})
 
 // describe("Import from keystore file", function () {
 
