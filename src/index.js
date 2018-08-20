@@ -197,7 +197,7 @@ class secKeys {
 
     deriveKeyUsingScryptInNode (password, salt, options, cb) {
         if (!isFunction(cb)) return this.deriveKeyUsingScryptInBrowser(password, salt, options);
-        require("scrypt").hash(password, {
+        require('scrypt').hash(password, {
             N: options.kdfparams.n || this.constants.scrypt.n,
             r: options.kdfparams.r || this.constants.scrypt.r,
             p: options.kdfparams.p || this.constants.scrypt.p

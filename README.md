@@ -14,5 +14,5 @@ secKeyStore uses key derivation functions (PBKDF2-SHA256 or scrypt) to genrate d
 ## Installation
 
 ```
-npm install @sec-block/secjs-keystore
+npm install @sec-block/secjs-keys
 ```
