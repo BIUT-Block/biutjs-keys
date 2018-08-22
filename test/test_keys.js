@@ -39,7 +39,7 @@ describe('Check a valid hex-encoded string', function () {
   })
 })
 
-describe("Check a valid base64-encoded string", function () {
+describe("Check if valid base64-encoded string", function () {
   let test = function (t) {
     it(t.description, function () {
       t.assertions(keySEC.isBase64(t.s));
@@ -651,7 +651,7 @@ describe("Dump private key", function () {
     input: {
       password: "testpassword",
       privateKey: Buffer.from(
-        "d4b442fb5770192ba6a58946645ee2d003f2a02593b5fe6db3bb713a2321636a",
+        "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
         "hex"
       ),
       salt: "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd",
