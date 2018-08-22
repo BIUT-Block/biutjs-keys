@@ -17,99 +17,30 @@ const TIMEOUT = 120000
 const privateKey = utils.getPrivateKey()
 // const privateKey = crypto.randomBytes(32)
 
-// describe('isHex', function () {
-//   it('valid isHex tests', () => {
-//     assert.equal(keySEC.isHex(privateKey), true)
-//     assert.equal(keySEC.isHex('6d244ccbd93cdeb912bef51e422a8d15ba03d2e66920658867940f648b2bb5a6'), true)
-//     assert.equal(keySEC.isHex('fcebc174dda436593354171c476d68653261b07585a54ccb21aa311e24adbd2d'), true)
-//     assert.equal(keySEC.isHex('0xecfaa1a0c4372a2ac5cca1e164510ec8df04f681fc960797f1419802ec00b225'), true)
-//     assert.equal(keySEC.isHex('0x6e0e6d45820d91356fc73d7ff2bdef353ebfe7e9'), true)
-//     assert.equal(keySEC.isHex('0x220c96d48733a847570c2f0b40daa8793b3ae875b26a4ead1f0f9cead05c3863'), true)
-//     assert.equal(keySEC.isHex('0x2bb303f0ae65c64ef80a3bb3ee8ceef5d50065bd'), true)
-//   })
-  // it('valid isHex tests1', () => {
-  //   assert.equal(keySEC.isHex('6d244ccbd93cdeb912bef51e422a8d15ba03d2e66920658867940f648b2bb5a6'), true)
-  // })
-
-
-
-  // it('invalid isHex tests', () => {
-  //   // assert.equal(keySEC.isHex('0x0e026d45820d91356fc73d7ff2bdef353ebfe7e9'), false)
-  //   // assert.equal(keySEC.isHex('fdsjfsd'), false)
-  //   // assert.equal(keySEC.isHex(' 0xfdsjfsd'), false)
-  //   // assert.equal(keySEC.isHex('0xfds*jfsd'), false)
-  //   // assert.equal(keySEC.isHex('0xfds$jfsd'), false)
-  //   // assert.equal(keySEC.isHex('0xf@dsjfsd'), false)
-  //   // assert.equal(keySEC.isHex('0xfdsjf!sd'), false)
-  //   // assert.equal(keySEC.isHex('fds@@jfsd'), false)
-  //   // assert.equal(keySEC.isHex(24223), false)
-  //   // assert.equal(keySEC.isHex(null), false)
-  //   // assert.equal(keySEC.isHex(undefined), false)
-  //   // assert.equal(keySEC.isHex(false), false)
-  //   // assert.equal(keySEC.isHex({}), false)
-  //   // assert.equal(keySEC.isHex([]), false)
-  // })
-// })
-
-  describe("Check if valid hex-encoded string", function () {
-    let test = function (t) {
-      it(t.description, function () {
-        t.assertions(keySEC.isHex(t.s))
-      })
-    }
-    test({
-      description: "deadbeef -> true",
-      s: "deadbeef",
-      assertions: function (isHex) {
-        assert.isTrue(isHex)
-      }
-    })
-    test({
-      description: "deadbee -> false",
-      s: "deadbee",
-      assertions: function (isHex) {
-        assert.isFalse(isHex)
-      }
-    })
-    test({
-      description: "dEaDbEeF -> true",
-      s: "dEaDbEeF",
-      assertions: function (isHex) {
-        assert.isTrue(isHex)
-      }
-    })
-    test({
-      description: "123456 -> true",
-      s: "123456",
-      assertions: function (isHex) {
-        assert.isTrue(isHex)
-      }
-    })
-    test({
-      description: "00aa33 -> true",
-      s: "00aa33",
-      assertions: function (isHex) {
-        assert.isTrue(isHex);
-      }
-    })
-    test({
-      description: "0xdEaDbEeF -> false",
-      s: "0xdEaDbEeF",
-      assertions: function (isHex) {
-        assert.isFalse(isHex);
-      }
-    })
-    test({
-      description: ".. -> false",
-      s: "..",
-      assertions: function (isHex) {
-        assert.isFalse(isHex);
-      }
-    })
+describe('Check a valid hex-encoded string', function () {
+  it('SECprivateKey -> true', () => {
+    assert.equal(keySEC.isHex(privateKey), true)
+  })
+  it('d4b442fb5770192ba6a58946645ee2d003f2a02593b5fe6db3bb713a2321636a -> true', () => {
+    assert.equal(keySEC.isHex('d4b442fb5770192ba6a58946645ee2d003f2a02593b5fe6db3bb713a2321636a'), true)
+  })
+  it('1356fc -> true', () => {
+    assert.equal(keySEC.isHex('1356fc'), true)
   })
 
-describe("Check if valid base64-encoded string", function () {
-  var test = function (t) {
+  it('6d244 -> false', () => {
+    assert.equal(keySEC.isHex('6d244'), false)
+  })
+  it('0xdEaDbEeF -> false', () => {
+    assert.equal(keySEC.isHex('0xdEaDbEeF'), false)
+  })
+  it('0xfds*jfsd -> false', () => {
+    assert.equal(keySEC.isHex('0xfds*jfsd'), false)
+  })
+})
+
+describe("Check a valid base64-encoded string", function () {
+  let test = function (t) {
     it(t.description, function () {
       t.assertions(keySEC.isBase64(t.s));
     });
@@ -165,7 +96,7 @@ describe("Check if valid base64-encoded string", function () {
 });
 
 describe("Convert a string to a Buffer", function () {
-  var test = function (t) {
+  let test = function (t) {
     it(t.description, function () {
       t.assertions(keySEC.str2buf(t.params.str, t.params.enc));
     });
@@ -266,7 +197,7 @@ describe("Convert a string to a Buffer", function () {
 });
 
 describe("Check if selected cipher is available", function () {
-  var test = function (t) {
+  let test = function (t) {
     it(t.description, function () {
       t.assertions(keySEC.isCipherAvailable(t.cipher));
     });
@@ -297,76 +228,76 @@ describe("Check if selected cipher is available", function () {
 describe("Private key recovery", function () {
 
   // password used as secret key for aes-256 cipher
-  var password = "wheethereum";
-  var secret = crypto.createHash("sha256").update(password).digest("hex");
-  var cipher = crypto.createCipher("aes-256-cbc", secret);
-  var encryptedPrivateKey = cipher.update(privateKey, "hex", "base64");
+  let password = "secpassword";
+  let secret = crypto.createHash("sha256").update(password).digest("hex");
+  let cipher = crypto.createCipher("aes-256-cbc", secret);
+  let encryptedPrivateKey = cipher.update(privateKey, "hex", "base64");
   encryptedPrivateKey += cipher.final("base64");
 
   // verify private key is recovered by decryption
   it(encryptedPrivateKey + " -> " + privateKey.toString("hex"), function () {
-    var decipher = crypto.createDecipher("aes-256-cbc", secret);
-    var decryptedPrivateKey = decipher.update(encryptedPrivateKey, "base64", "hex");
+    let decipher = crypto.createDecipher("aes-256-cbc", secret);
+    let decryptedPrivateKey = decipher.update(encryptedPrivateKey, "base64", "hex");
     decryptedPrivateKey += decipher.final("hex");
     assert.strictEqual(decryptedPrivateKey, privateKey.toString("hex"));
   });
 });
 
-// describe("Derive SEC address from private key", function () {
-//   var test = function (t) {
-//     it(t.description + ": " + t.privateKey, function () {
-//       t.assertions(keySEC.privateKeyToAddress(t.privateKey));
-//       t.assertions(keySEC.privateKeyToAddress(Buffer.from(t.privateKey, "hex")));
-//       t.assertions(keySEC.privateKeyToAddress(Buffer.from(t.privateKey, "hex").toString("base64")));
-//     });
-//   };
-//   test({
-//     description: "32-byte private key",
-//     privateKey: "d1b1178d3529626a1a93e073f65028370d14c7eb0936eb42abef05db6f37ad7d",
-//     assertions: function (address) {
-//       assert.strictEqual(address, "0xcb61d5a9c4896fb9658090b597ef0e7be6f7b67e");
-//     }
-//   });
-//   test({
-//     description: "32-byte private key",
-//     privateKey: "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
-//     assertions: function (address) {
-//       assert.strictEqual(address, "0x008aeeda4d805471df9b2a5b0f38a0c3bcba786b");
-//     }
-//   });
-//   test({
-//     description: "32-byte private key",
-//     privateKey: "6445042b8e8cc121fb6a8985606a84b4cb07dac6dfb3633e769ec27dd2370984",
-//     assertions: function (address) {
-//       assert.strictEqual(address, "0xe1e212c353f7a682693c198ba5ff85849f8300cc");
-//     }
-//   });
-//   test({
-//     description: "32-byte private key",
-//     privateKey: "490127c2782fb55943beeb31943ec26f48a9a5121cd7e91799eb354d30d46529",
-//     assertions: function (address) {
-//       assert.strictEqual(address, "0xf0c4ee355432a7c7da12bdef04543723d110d591");
-//     }
-//   });
-//   test({
-//     description: "31-byte private key",
-//     privateKey: "fa7b3db73dc7dfdf8c5fbdb796d741e4488628c41fc4febd9160a866ba0f35",
-//     assertions: function (address) {
-//       assert.strictEqual(address, "0xd1e64e5480bfaf733ba7d48712decb8227797a4e");
-//     }
-//   });
-//   test({
-//     description: "30-byte private key",
-//     privateKey: "81c29e8142bb6a81bef5a92bda7a8328a5c85bb2f9542e76f9b0f94fc018",
-//     assertions: function (address) {
-//       assert.strictEqual(address, "0x31e9d1e6d844bd3a536800ef8d8be6a9975db509");
-//     }
-//   });
-// });
+describe("Derive SEC address from private key", function () {
+  let test = function (t) {
+    it(t.description + ": " + t.privateKey, function () {
+      t.assertions(keySEC.privateKeyToAddress(t.privateKey));
+      t.assertions(keySEC.privateKeyToAddress(Buffer.from(t.privateKey, "hex")));
+      t.assertions(keySEC.privateKeyToAddress(Buffer.from(t.privateKey, "hex").toString("base64")));
+    });
+  };
+  test({
+    description: "32-byte private key",
+    privateKey: "d1b1178d3529626a1a93e073f65028370d14c7eb0936eb42abef05db6f37ad7d",
+    assertions: function (address) {
+      assert.strictEqual(address, "0xcb61d5a9c4896fb9658090b597ef0e7be6f7b67e");
+    }
+  });
+  test({
+    description: "32-byte private key",
+    privateKey: "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
+    assertions: function (address) {
+      assert.strictEqual(address, "0x008aeeda4d805471df9b2a5b0f38a0c3bcba786b");
+    }
+  });
+  test({
+    description: "32-byte private key",
+    privateKey: "6445042b8e8cc121fb6a8985606a84b4cb07dac6dfb3633e769ec27dd2370984",
+    assertions: function (address) {
+      assert.strictEqual(address, "0xe1e212c353f7a682693c198ba5ff85849f8300cc");
+    }
+  });
+  test({
+    description: "32-byte private key",
+    privateKey: "490127c2782fb55943beeb31943ec26f48a9a5121cd7e91799eb354d30d46529",
+    assertions: function (address) {
+      assert.strictEqual(address, "0xf0c4ee355432a7c7da12bdef04543723d110d591");
+    }
+  });
+  test({
+    description: "31-byte private key",
+    privateKey: "fa7b3db73dc7dfdf8c5fbdb796d741e4488628c41fc4febd9160a866ba0f35",
+    assertions: function (address) {
+      assert.strictEqual(address, "0xd1e64e5480bfaf733ba7d48712decb8227797a4e");
+    }
+  });
+  test({
+    description: "30-byte private key",
+    privateKey: "81c29e8142bb6a81bef5a92bda7a8328a5c85bb2f9542e76f9b0f94fc018",
+    assertions: function (address) {
+      assert.strictEqual(address, "0x31e9d1e6d844bd3a536800ef8d8be6a9975db509");
+    }
+  });
+});
 
 describe("Create random private key, salt and initialization vector", function () {
 
-  var test = function (dk, params) {
+  let test = function (dk, params) {
     assert.property(dk, "privateKey");
     assert.isNotNull(dk.privateKey);
     assert.instanceOf(dk.privateKey, Buffer);
@@ -383,8 +314,8 @@ describe("Create random private key, salt and initialization vector", function (
     assert.strictEqual(dk.salt.length, params.keyBytes);
   };
 
-  var runtests = function (i) {
-    var runtest = function (params) {
+  let runtests = function (i) {
+    let runtest = function (params) {
       it("create key " + i + ": " + JSON.stringify(params), function (done) {
 
         // synchronous
@@ -406,17 +337,17 @@ describe("Create random private key, salt and initialization vector", function (
     runtest({ keyBytes: 32, ivBytes: 16 });
   };
 
-  var i;
+  let i;
   for (i = 0; i < 25; ++i) runtests(i);
 });
 
 describe("Encryption", function () {
 
-  var test = function (t) {
-    var label = t.input.cipher + ": " + JSON.stringify(t.input.plaintext) +
+  let test = function (t) {
+    let label = t.input.cipher + ": " + JSON.stringify(t.input.plaintext) +
       " -> " + t.expected.ciphertext;
     it(label, function () {
-      var oldCipher = keySEC.constants.cipher;
+      let oldCipher = keySEC.constants.cipher;
       keySEC.constants.cipher = t.input.cipher;
       assert.strictEqual(
         keySEC.encrypt(t.input.plaintext, t.input.key, t.input.iv).toString("base64"),
@@ -426,7 +357,7 @@ describe("Encryption", function () {
     });
   };
 
-  var runtests = function (t) {
+  let runtests = function (t) {
     test({
       input: {
         plaintext: t.plaintext,
@@ -490,10 +421,10 @@ describe("Encryption", function () {
 
 describe("Decryption", function () {
 
-  var test = function (t) {
-    var label = t.input.cipher + ": " + JSON.stringify(t.input.ciphertext) + " -> " + t.expected.plaintext;
+  let test = function (t) {
+    let label = t.input.cipher + ": " + JSON.stringify(t.input.ciphertext) + " -> " + t.expected.plaintext;
     it(label, function () {
-      var oldCipher = keySEC.constants.cipher;
+      let oldCipher = keySEC.constants.cipher;
       keySEC.constants.cipher = t.input.cipher;
       assert.strictEqual(
         keySEC.decrypt(t.input.ciphertext, t.input.key, t.input.iv).toString("hex"),
@@ -503,7 +434,7 @@ describe("Decryption", function () {
     });
   };
 
-  var runtests = function (t) {
+  let runtests = function (t) {
     test({
       input: {
         ciphertext: t.ciphertext,
@@ -568,8 +499,8 @@ describe("Decryption", function () {
 
 describe("Key derivation", function () {
 
-  var test = function (t) {
-    var pbkdf2, pbkdf2Sync;
+  let test = function (t) {
+    let pbkdf2, pbkdf2Sync;
 
     before(function () {
       pbkdf2 = keySEC.crypto.pbkdf2;
@@ -582,7 +513,7 @@ describe("Key derivation", function () {
     });
 
     it("using crypto: " + t.input.kdf, function (done) {
-      var derivedKey;
+      let derivedKey;
       this.timeout(TIMEOUT);
       keySEC.crypto.pbkdf2 = pbkdf2;
       keySEC.crypto.pbkdf2Sync = pbkdf2Sync;
@@ -609,7 +540,7 @@ describe("Key derivation", function () {
       );
     });
     it("using sjcl: " + t.input.kdf, function (done) {
-      var derivedKey;
+      let derivedKey;
       this.timeout(TIMEOUT);
       keySEC.crypto.pbkdf2 = undefined;
       keySEC.crypto.pbkdf2Sync = undefined;
@@ -657,9 +588,9 @@ describe("Key derivation", function () {
 
 describe("Message authentication code", function () {
 
-  var test = function (t) {
+  let test = function (t) {
     it("convert " + JSON.stringify(t.input) + " -> " + t.output, function () {
-      var mac = keySEC.getMAC(t.input.derivedKey, t.input.ciphertext);
+      let mac = keySEC.getMAC(t.input.derivedKey, t.input.ciphertext);
       assert.strictEqual(mac, t.output);
     });
   };
@@ -682,10 +613,10 @@ describe("Message authentication code", function () {
 
 describe("Dump private key", function () {
 
-  var test = function (t) {
+  let test = function (t) {
 
     it(t.input.kdf, function (done) {
-      var keyObject;
+      let keyObject;
       this.timeout(TIMEOUT);
 
       // synchronous
@@ -720,7 +651,7 @@ describe("Dump private key", function () {
     input: {
       password: "testpassword",
       privateKey: Buffer.from(
-        "7a28b5ba57c53603b0b07b56bba752f7784bf506fa95edc395f5cf6c7514fe9d",
+        "d4b442fb5770192ba6a58946645ee2d003f2a02593b5fe6db3bb713a2321636a",
         "hex"
       ),
       salt: "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd",
@@ -779,7 +710,7 @@ describe("Dump private key", function () {
 });
 
 describe("Generate keystore filename", function () {
-  var test = function (t) {
+  let test = function (t) {
     it(t.address, function () {
       t.assertions(keySEC.generateKeystoreFilename(t.address));
     });
@@ -787,7 +718,7 @@ describe("Generate keystore filename", function () {
   test({
     address: "0000000000000000000000000000000000000b0b",
     assertions: function (filename) {
-      var splitFilename = filename.split("--");
+      let splitFilename = filename.split("--");
       assert.strictEqual(splitFilename.length, 3);
       assert.strictEqual(splitFilename[0], "UTC");
       assert.strictEqual(splitFilename[2], "0000000000000000000000000000000000000b0b");
@@ -796,7 +727,7 @@ describe("Generate keystore filename", function () {
   test({
     address: "008aeeda4d805471df9b2a5b0f38a0c3bcba786b",
     assertions: function (filename) {
-      var splitFilename = filename.split("--");
+      let splitFilename = filename.split("--");
       assert.strictEqual(splitFilename.length, 3);
       assert.strictEqual(splitFilename[0], "UTC");
       assert.strictEqual(splitFilename[2], "008aeeda4d805471df9b2a5b0f38a0c3bcba786b");
@@ -805,7 +736,7 @@ describe("Generate keystore filename", function () {
   test({
     address: "c9a9adc70a9cbf077ae4bd0a170d88592914e0cc",
     assertions: function (filename) {
-      var splitFilename = filename.split("--");
+      let splitFilename = filename.split("--");
       assert.strictEqual(splitFilename.length, 3);
       assert.strictEqual(splitFilename[0], "UTC");
       assert.strictEqual(splitFilename[2], "c9a9adc70a9cbf077ae4bd0a170d88592914e0cc");
@@ -813,85 +744,85 @@ describe("Generate keystore filename", function () {
   });
 });
 
-// describe("Export to file", function () {
+describe("Export to file", function () {
 
-//   var keyObj;
+  let keyObj;
 
-//   if (keySEC.browser) return;
+  if (keySEC.browser) return;
 
-//   keyObj = {
-//     address: "008aeeda4d805471df9b2a5b0f38a0c3bcba786b",
-//     crypto: {
-//       cipher: "aes-128-ctr",
-//       ciphertext: "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
-//       cipherparams: {
-//         iv: "6087dab2f9fdbbfaddc31a909735c1e6"
-//       },
-//       mac: "517ead924a9d0dc3124507e3393d175ce3ff7c1e96529c6c555ce9e51205e9b2",
-//       kdf: "pbkdf2",
-//       kdfparams: {
-//         c: 262144,
-//         dklen: 32,
-//         prf: "hmac-sha256",
-//         salt: "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd"
-//       }
-//     },
-//     id: "e13b209c-3b2f-4327-bab0-3bef2e51630d",
-//     version: 3
-//   }
+  keyObj = {
+    address: "008aeeda4d805471df9b2a5b0f38a0c3bcba786b",
+    crypto: {
+      cipher: "aes-128-ctr",
+      ciphertext: "5318b4d5bcd28de64ee5559e671353e16f075ecae9f99c7a79a38af5f869aa46",
+      cipherparams: {
+        iv: "6087dab2f9fdbbfaddc31a909735c1e6"
+      },
+      mac: "517ead924a9d0dc3124507e3393d175ce3ff7c1e96529c6c555ce9e51205e9b2",
+      kdf: "pbkdf2",
+      kdfparams: {
+        c: 262144,
+        dklen: 32,
+        prf: "hmac-sha256",
+        salt: "ae3cd4e7013836a3df6bd7241b12db061dbe2c6785853cce422d148a624ce0bd"
+      }
+    },
+    id: "e13b209c-3b2f-4327-bab0-3bef2e51630d",
+    version: 3
+  }
 
-//   it("export key to json file", function (done) {
-//     var keypath, outfile
-//     this.timeout(TIMEOUT)
+  it("export key to json file", function (done) {
+    let keypath, outfile
+    this.timeout(TIMEOUT)
 
-//     // synchronous
-//     keypath = keySEC.exportToFile(keyObj)
-//     outfile = keypath.split("/")
-//     assert.isArray(outfile)
-//     outfile = outfile[outfile.length - 1]
-//     assert.strictEqual(outfile.slice(0, 5), "UTC--")
-//     assert.isAbove(outfile.indexOf(keyObj.address), -1)
-//     fs.unlinkSync(keypath)
+    // synchronous
+    keypath = keySEC.exportToFile(keyObj)
+    outfile = keypath.split("/")
+    assert.isArray(outfile)
+    outfile = outfile[outfile.length - 1]
+    assert.strictEqual(outfile.slice(0, 5), "UTC--")
+    assert.isAbove(outfile.indexOf(keyObj.address), -1)
+    fs.unlinkSync(keypath)
 
-//     // asynchronous
-//     keySEC.exportToFile(keyObj, null, function (keyPath) {
-//       var outFile = keyPath.split("/");
-//       assert.isArray(outFile);
-//       outFile = outFile[outFile.length - 1];
-//       assert.strictEqual(outFile.slice(0, 5), "UTC--");
-//       assert.isAbove(outFile.indexOf(keyObj.address), -1);
-//       fs.unlink(keyPath, function (exc) {
-//         if (exc) return done(exc)
-//         done()
-//       })
-//     })
-//   })
-//   it("export key to json (browser)", function (done) {
-//     var json;
-//     this.timeout(TIMEOUT);
-//     keySEC.browser = true;
+    // asynchronous
+    keySEC.exportToFile(keyObj, null, function (keyPath) {
+      let outFile = keyPath.split("/");
+      assert.isArray(outFile);
+      outFile = outFile[outFile.length - 1];
+      assert.strictEqual(outFile.slice(0, 5), "UTC--");
+      assert.isAbove(outFile.indexOf(keyObj.address), -1);
+      fs.unlink(keyPath, function (exc) {
+        if (exc) return done(exc)
+        done()
+      })
+    })
+  })
+  it("export key to json (browser)", function (done) {
+    let json;
+    this.timeout(TIMEOUT);
+    keySEC.browser = true;
 
-//     // synchronous
-//     json = keySEC.exportToFile(keyObj);
-//     assert.strictEqual(json, JSON.stringify(keyObj));
+    // synchronous
+    json = keySEC.exportToFile(keyObj);
+    assert.strictEqual(json, JSON.stringify(keyObj));
 
-//     // asynchronous
-//     keySEC.exportToFile(keyObj, null, function (json) {
-//       assert.strictEqual(json, JSON.stringify(keyObj));
-//       keySEC.browser = false;
-//       done()
-//     })
-//   })
-// })
+    // asynchronous
+    keySEC.exportToFile(keyObj, null, function (json) {
+      assert.strictEqual(json, JSON.stringify(keyObj));
+      keySEC.browser = false;
+      done()
+    })
+  })
+})
 
 describe("Import from keystore file", function () {
 
   if (keySEC.browser) return;
 
-  function test(t) {
-    var label = "[" + t.expected.crypto.kdf + "] import " + t.input.address + " from file";
+  function test (t) {
+    let label = "[" + t.expected.crypto.kdf + "] import " + t.input.address + " from file";
     it(label, function (done) {
-      var keyObject;
+      let keyObject;
       this.timeout(TIMEOUT);
       keyObject = keySEC.importFromFile(t.input.address, t.input.datadir);
       checkKeyObj.structure(keySEC, keyObject);
@@ -1129,11 +1060,11 @@ describe("Import from keystore file", function () {
 
 describe("Recover plaintext private key from key object", function () {
 
-  var test = function (t) {
-    var keyObjectCrypto = t.input.keyObject.Crypto || t.input.keyObject.crypto;
-    var label = "[" + keyObjectCrypto.kdf + "] "+ "recover key for " + t.input.keyObject.address;
+  let test = function (t) {
+    let keyObjectCrypto = t.input.keyObject.Crypto || t.input.keyObject.crypto;
+    let label = "[" + keyObjectCrypto.kdf + "] " + "recover key for " + t.input.keyObject.address;
     it(label, function (done) {
-      var dk;
+      let dk;
       this.timeout(TIMEOUT);
 
       // synchronous
@@ -1148,7 +1079,7 @@ describe("Recover plaintext private key from key object", function () {
     });
   };
 
-  var foobarKeyObject = {
+  let foobarKeyObject = {
     address: "7ef5a6135f1fd6a02593eedc869c6d41d934aef8",
     crypto: {
       cipher: "aes-128-ctr",
@@ -1453,7 +1384,7 @@ describe("Recover plaintext private key from key object", function () {
         Crypto: {
           cipher: "aes-128-ctr",
           ciphertext: "008baf806bb0f855fbc35fcf22cab732315a368e6e6d529b50dcbc60c955d349",
-          cipherparams: {iv: "92a01f397d5c2ce4c2964c36a9754f69"},
+          cipherparams: { iv: "92a01f397d5c2ce4c2964c36a9754f69" },
           kdf: "scrypt",
           kdfparams: {
             dklen: 32,
@@ -1477,7 +1408,7 @@ describe("Recover plaintext private key from key object", function () {
         address: "f0c4ee355432a7c7da12bdef04543723d110d591",
         Crypto: {
           cipher: "aes-128-cbc",
-          cipherparams: {iv: "bda427191686ac4455142bc449543129"},
+          cipherparams: { iv: "bda427191686ac4455142bc449543129" },
           ciphertext: "097cc168892c41872ba92af7a359708f2e9f2f420465684cf84bb2d1a7351e37a7746607d3845ab91ce82cbf9ba54c69",
           kdf: "scrypt",
           kdfparams: {
@@ -1503,7 +1434,7 @@ describe("Recover plaintext private key from key object", function () {
         address: "f0c4ee355432a7c7da12bdef04543723d110d591",
         Crypto: {
           cipher: "aes-128-cbc",
-          cipherparams: {iv: "bda427191686ac4455142bc449543129"},
+          cipherparams: { iv: "bda427191686ac4455142bc449543129" },
           ciphertext: "fc221520b157d08bd51e1b220a188e36b2f53a783ed5777e4438951349dd80b33089a18f493a84f279f376edc42a370d",
           kdf: "scrypt",
           kdfparams: {
