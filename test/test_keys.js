@@ -495,7 +495,7 @@ describe("Decryption", function () {
   });
 });
 
-// Test vectors:
+//Test vectors:
 
 describe("Key derivation", function () {
 
