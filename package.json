@@ -23,14 +23,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/MongoX-SEC/secjs-keys.git"
+    "url": "git+htts://github.com/SEC-Block/secjs-keys.git"
   },
   "author": "bx",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/MongoX-SEC/secjs-keys/issues"
+    "url": "htts://github.com/SEC-Block/secjs-keys/issues"
   },
-  "homepage": "https://gitlab.com/MongoX-SEC/secjs-keys#README",
+  "homepage": "htts://github.com/SEC-Block/secjs-keys#README",
   "keywords": [
     "MongoX"
   ]
