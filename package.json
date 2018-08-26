@@ -4,7 +4,8 @@
   "description": "Keystore mangement of SEC BlockChain",
   "main": "index.js",
   "directories": {
-    "lib": "lib"
+    "example": "example",
+    "test": "test"
   },
   "dependencies": {
     "@sec-block/secjs-util": "^1.1.12",
@@ -24,10 +25,13 @@
     "type": "git",
     "url": "git+https://gitlab.com/MongoX-SEC/secjs-keys.git"
   },
-  "author": "",
+  "author": "bx",
   "license": "ISC",
   "bugs": {
     "url": "https://gitlab.com/MongoX-SEC/secjs-keys/issues"
   },
-  "homepage": "https://gitlab.com/MongoX-SEC/secjs-keys#README"
+  "homepage": "https://gitlab.com/MongoX-SEC/secjs-keys#README",
+  "keywords": [
+    "MongoX"
+  ]
 }
