@@ -106,7 +106,7 @@ secKeys.dump(password, dk.privateKey, dk.salt, dk.iv, options, function (keyObje
 secKeys.exportToFile(keyObject)
 ```
 
-After successful key export, you will see a message like:
+After successful key export, you will see a message like(Caution: choose the path to keystore default folder ('keystore'):
 
 ```
 Saved to file:

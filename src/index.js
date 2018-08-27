@@ -55,7 +55,6 @@ class secKeys {
         p: 8
       }
     }
-    this.version = '1.0.4'
     this.browser = isBrowser
     this.scrypt = null
     this.crypto = isBrowser ? require('crypto-browserify') : require('crypto')
@@ -323,7 +322,7 @@ class secKeys {
     ivBytes = params.ivBytes || this.constants.ivBytes
 
     function checkBoundsAndCreateObject (randomBytes) {
-      var privateKey = str2buf(utils.getPrivateKey(), 'hex')
+      let privateKey = str2buf(utils.getPrivateKey(), 'hex')
       // var privateKey = randomBytes.slice(0, keyBytes)
       if (!secp256k1.privateKeyVerify(privateKey)) return self.create(params, cb)
       return {
@@ -486,7 +485,7 @@ class secKeys {
   * @return {string} Keystore filename.
   */
   generateKeystoreFilename (address) {
-    var filename = 'UTC--' + new Date().toISOString() + '--' + address
+    let filename = 'UTC--' + new Date().toISOString() + '--' + address
 
     // Windows does not permit ':' in filenames, replace all with '-'
     if (process.platform === 'win32') filename = filename.split(':').join('-')
